@@ -1,0 +1,17 @@
+short = "gh"
+extra_subs = []
+extract_subs = true
+extract_flags = true
+flags = {}
+
+[subs.issue]
+extract_subs = true
+
+[subs.pr]
+extract_subs = true
+
+[subs.run]
+extract_subs = true
+
+[subs.workflow]
+extract_subs = true

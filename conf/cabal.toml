@@ -1,0 +1,17 @@
+short = "cb"
+extra_subs = []
+extract_subs = true
+extract_flags = true
+flags = {}
+
+[subs.build]
+short = "b"
+
+[subs.list-bin]
+short = "lb"
+
+[subs.run]
+short = "r"
+
+[subs.v2-install]
+stop = true

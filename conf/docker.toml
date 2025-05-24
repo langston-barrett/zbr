@@ -1,0 +1,51 @@
+short = "dk"
+extra_subs = []
+extract_subs = true
+extract_flags = true
+flags = {}
+
+[subs.config]
+extract_subs = true
+
+[subs.container]
+extract_subs = true
+
+[subs.context]
+extract_subs = true
+
+[subs.image]
+extract_subs = true
+
+[subs.manifest]
+extract_subs = true
+
+[subs.network]
+extract_subs = true
+
+[subs.node]
+extract_subs = true
+
+[subs.plugin]
+extract_subs = true
+
+[subs.secret]
+extract_subs = true
+
+[subs.service]
+extract_subs = true
+
+[subs.stack]
+extract_subs = true
+
+[subs.swarm]
+extract_subs = true
+
+[subs.system]
+extract_subs = true
+
+[subs.trust]
+extract_subs = true
+
+[subs.volume]
+extract_subs = true
+

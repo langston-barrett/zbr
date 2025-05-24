@@ -1,0 +1,16 @@
+[package]
+name = "zbr"
+description = "ZSH abbreviations"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+clap = { features = ["derive"], version = "4" }
+serde = { features = ["derive"], version = "1" }
+thiserror = "1"
+toml = "0.7"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+[dev-dependencies]
+expect-test = "1"
