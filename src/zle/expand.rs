@@ -63,10 +63,12 @@ fn expand_pre(conf: ConfigFile, lbuf: String) -> Option<String> {
     } else if lbuf == "w" {
         let pwd = std::env::current_dir().ok()?;
         match build::System::detect(pwd) {
-            Some(build::System::Cabal) => Some(String::from("ls ./**/*.cabal ./**/*.hs | entr -c -s 'cabal build'")),
-            Some(build::System::Cargo) => {
-                Some(String::from("ls ./**/Cargo.toml ./**/*.rs | entr -c -s 'cargo fmt && cargo clippy -- --deny warnings'"))
-            }
+            Some(build::System::Cabal) => Some(String::from(
+                "ls ./**/*.cabal ./**/*.hs | entr -c -s 'cabal build'",
+            )),
+            Some(build::System::Cargo) => Some(String::from(
+                "ls ./**/Cargo.toml ./**/*.rs | entr -c -s 'cargo fmt && cargo clippy -- --deny warnings'",
+            )),
             Some(build::System::Make) => Some(String::from("make test")),
             None => None,
         }

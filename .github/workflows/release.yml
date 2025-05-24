@@ -44,6 +44,9 @@ jobs:
   # https://github.com/rust-lang/rustfmt/blob/master/.github/workflows/upload-assets.yml
   artifacts:
     needs: release
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
     strategy:
       matrix:
         build: [linux-x86_64-gnu, linux-x86_64-musl, macos-x86_64]
@@ -71,7 +74,6 @@ jobs:
           #   os: windows-latest
           #   rust: nightly-x86_64-msvc
           #   target: x86_64-pc-windows-msvc
-    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
 

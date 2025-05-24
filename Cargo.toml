@@ -1,8 +1,14 @@
 [package]
 name = "zbr"
+version = "0.1.0"
+edition = "2024"
 description = "ZSH abbreviations"
-version = "0.0.0"
-edition = "2021"
+keywords = ["zsh", "abbreviations"]
+authors = ["Langston Barrett <langston.barrett@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/langston-barrett/zbr"
+repository = "https://github.com/langston-barrett/zbr"
 
 [dependencies]
 clap = { features = ["derive"], version = "4" }

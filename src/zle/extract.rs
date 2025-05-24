@@ -399,7 +399,7 @@ mod tests {
 
     use expect_test::expect;
 
-    use super::{deconflict, extract_text, ConfigFile};
+    use super::{ConfigFile, deconflict, extract_text};
 
     const CABAL_HELP: &str = r#"
 Command line interface to the Haskell Cabal infrastructure.
