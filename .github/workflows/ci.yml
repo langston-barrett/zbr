@@ -5,79 +5,22 @@ on:
     - main
   pull_request:
 
-env:
-  # The NAME makes it easier to copy/paste snippets from other CI configs
-  NAME: zbr
-  CACHE_VERSION: 1
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  doc:
-    runs-on: ubuntu-latest
-    permissions:
-      # Cancel workflow
-      actions: write
-      # Upload docs
-      contents: write
-    steps:
-    - name: Cancel previous run
-      uses: styfle/cancel-workflow-action@0.11.0
-      with:
-        access_token: ${{ github.token }}
-
-    - uses: actions/checkout@v4
-
-    - name: Setup mdBook
-      uses: peaceiris/actions-mdbook@v1
-      with:
-        mdbook-version: '0.4.33'
-
-    - name: Build docs
-      run: |
-        cd doc
-        mdbook build
-
-    - name: Push docs
-      uses: peaceiris/actions-gh-pages@v3
-      if: ${{ github.ref == 'refs/heads/main' }}
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: doc/book
-
-    - name: Package docs
-      shell: bash
-      run: |
-        tar -cvf doc.tar.gz doc/book/*
-
-    - name: Upload docs
-      uses: actions/upload-artifact@v4
-      if: github.repository == 'langston-barrett/${{ env.NAME }}'
-      with:
-        name: "${{ env.NAME }}-docs"
-        path: "*.tar.gz"
-        if-no-files-found: error
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Format
-      run: cargo fmt && git diff --exit-code
-    - name: Deps
-      run: |
-        rustup update
-        rustup component add clippy
-    - uses: Swatinem/rust-cache@v2.7.0
-      with:
-        prefix-key: ${{ env.CACHE_VERSION }}
-    - name: Lint
-      run: cargo clippy -- --deny warnings
-
   test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: Swatinem/rust-cache@v2.7.0
-      with:
-        prefix-key: ${{ env.CACHE_VERSION }}
+    - run: cargo fmt --check
+    - name: Deps
+      run: |
+        rustup update
+        rustup component add clippy
+    - uses: Swatinem/rust-cache@v2
+    - name: Lint
+      run: cargo clippy -- --deny warnings
     - run: env RUSTFLAGS="@$PWD/rustc-flags" cargo test --locked --no-run
     - run: env RUSTFLAGS="@$PWD/rustc-flags" cargo test
