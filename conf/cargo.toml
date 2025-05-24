@@ -1,0 +1,74 @@
+short = "cg"
+# cargo --list
+exact_subs = [
+  "add",
+  "bench",
+  "bisect-rustc",
+  "build",
+  "careful",
+  "check",
+  "clean",
+  "clippy",
+  "config",
+  "depgraph",
+  "doc",
+  "fetch",
+  "fix",
+  "fmt",
+  "generate-lockfile",
+  "git-checkout",
+  "help",
+  "init",
+  "install",
+  "locate-project",
+  "login",
+  "logout",
+  "metadata",
+  "miri",
+  "new",
+  "owner",
+  "package",
+  "pkgid",
+  "publish",
+  "read-manifest",
+  "remove",
+  "report",
+  "run",
+  "rustc",
+  "rustdoc",
+  "search",
+  "set-version",
+  "test",
+  "tree",
+  "uninstall",
+  "update",
+  "upgrade",
+  "vendor",
+  "verify-project",
+  "version",
+  "yank",
+]
+extract_subs = true
+extract_flags = true
+flags = {}
+
+[subs.build]
+short = "b"
+
+[subs.check]
+short = "c"
+
+[subs.doc]
+short = "d"
+
+[subs.clean]
+short = "cl"
+
+[subs.install]
+short = "i"
+
+[subs.run]
+short = "r"
+
+[subs.test]
+short = "t"
