@@ -2,7 +2,7 @@ export RUST_BACKTRACE=1
 
 function zbr-hint() {
   if [[ -n ${BUFFER% } ]]; then
-    out=$(printf "\n" && env RUST_BACKTRACE=1 zbr hint --max 5 "${ZBR_CONF}" -- "${BUFFER% }")
+    out=$(printf "\n" && env RUST_BACKTRACE=1 zbr hint --max 5 "${ZBR_CONF}" -- "${BUFFER}")
     if [[ -n $out ]]; then
       zle -M "${out}"
     else
