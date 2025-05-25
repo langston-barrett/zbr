@@ -4,7 +4,7 @@ use std::{
     process::Command,
 };
 
-use tracing::debug;
+use tracing::{debug, warn};
 
 use crate::zle::abbrev;
 
@@ -42,6 +42,9 @@ pub(super) struct Cmd {
     #[serde(serialize_with = "ordered_map")]
     pub(super) flags: HashMap<String, Flag>,
     #[serde(default)]
+    #[serde(skip_serializing_if = "is_default")]
+    pub(super) no_args: bool,
+    #[serde(default)]
     #[serde(skip_serializing_if = "Cmds::is_empty")]
     pub(super) subs: Cmds,
 }
@@ -78,6 +81,8 @@ pub(crate) struct ConfigFile {
     extra_subs: Vec<String>,
     #[serde(default)]
     flags: HashMap<String, Flag>,
+    #[serde(default)]
+    no_args: bool,
     #[serde(default)]
     stop: bool,
     #[serde(default)]
@@ -292,6 +297,7 @@ fn extract_text(conf: &ConfigFile, text: String) -> (HashMap<String, Flag>, Cmds
             Cmd {
                 short,
                 flags: HashMap::new(),
+                no_args: conf.no_args,
                 subs: Cmds::default(),
             },
         );
@@ -354,11 +360,15 @@ pub(super) fn extract_recursive(
         }
     }
 
+    if conf.no_args && !subs.is_empty() {
+        warn!("`no_args` specified, but {long} has subcommands");
+    }
     Some(Cmd {
         short: conf
             .short
             .unwrap_or_else(|| String::from(long.chars().next().unwrap())),
         flags,
+        no_args: conf.no_args,
         subs,
     })
 }

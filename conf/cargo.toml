@@ -64,6 +64,11 @@ short = "c"
 
 [subs.doc]
 short = "d"
+no_args = true
+
+[subs.doc.flags.--open]
+short = "o"
+squish = true
 
 [subs.clean]
 short = "cl"

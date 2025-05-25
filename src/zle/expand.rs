@@ -115,6 +115,11 @@ mod tests {
     }
 
     #[test]
+    fn test_expand_cargo_doc_o() {
+        test_expand("cargo doc o", "cargo doc --open ");
+    }
+
+    #[test]
     fn test_expand_grba() {
         test_expand("grba", "git rebase --abort ");
     }

@@ -61,6 +61,9 @@ pub(super) fn compile_recursive(
     for (f, fl) in &cmd.flags {
         let expanded = format!("{pfx}{long} {f} ");
         bind(format!("{pfx}{long} -{}", fl.short), expanded.clone());
+        if cmd.no_args {
+            bind(format!("{pfx}{long} {}", fl.short), expanded.clone());
+        }
         if fl.squish {
             bind(format!("{pfx}{short}{}", fl.short), expanded);
         }
@@ -190,11 +193,13 @@ mod tests {
             Cmd {
                 short: String::from("g"),
                 flags: HashMap::new(),
+                no_args: false,
                 subs: Cmds(BTreeMap::from([(
                     String::from("submodule"),
                     Cmd {
                         short: String::from("su"),
                         flags: HashMap::new(),
+                        no_args: false,
                         subs: Cmds::default(),
                     },
                 )])),
