@@ -74,10 +74,14 @@ pub(super) fn compile_recursive(
     for (sub_long, sub) in &cmd.subs.0 {
         let sub_short = &sub.short;
         debug!("binding sub: {sub_long}");
-        bind(
-            format!("{prefix_str}{short}{sub_short}"),
-            format!("{prefix_str}{long} {sub_long}"),
-        );
+
+        let k = format!("{prefix_str}{short}{sub_short}");
+        let starts_with_key = lbuf.starts_with(&k);
+        bind(k, format!("{prefix_str}{long} {sub_long}"));
+        if !starts_with_key {
+            continue;
+        }
+
         // e.g., bind `gsuu` to `git submodule update`
         // TODO: Do this recursively
         for (sub_sub_long, sub_sub) in &sub.subs.0 {
@@ -97,6 +101,9 @@ pub(super) fn compile_recursive(
                 );
             }
         }
+    }
+    for (sub_long, sub) in &cmd.subs.0 {
+        debug!("binding sub: {sub_long}");
         if !all && doesnt_start_with_prefix {
             continue;
         }
