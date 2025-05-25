@@ -6,14 +6,13 @@ use super::abbrev::unique_prefixes;
 use super::extract::{Cmd, Cmds};
 
 pub(super) fn compile_recursive(
-    // TODO: Make this a plain string
-    mut prefix: Vec<String>,
+    mut prefix_str: String,
     cmd: &Cmd,
     long: &str,
     lbuf: &str,
     all: bool,
 ) -> BTreeMap<String, String> {
-    debug!("Prefix: {prefix:?}");
+    debug!("Prefix: {prefix_str}");
     let mut m = BTreeMap::new();
     let mut bind = |k: String, mut v: String| -> bool {
         debug!("considering binding '{k}' to '{v}'");
@@ -33,8 +32,7 @@ pub(super) fn compile_recursive(
         true
     };
 
-    let mut prefix_str = prefix.join(" ");
-    if !prefix.is_empty() {
+    if !prefix_str.is_empty() && !prefix_str.ends_with(' ') {
         prefix_str.push(' ');
     }
     if !all && prefix_str.len() > lbuf.len() + 1 {
@@ -70,7 +68,6 @@ pub(super) fn compile_recursive(
             bind(format!("{prefix_str}{short}{}", fl.short), expanded);
         }
     }
-    prefix.push(long.to_string());
     for (sub_long, sub) in &cmd.subs.0 {
         let sub_short = &sub.short;
         debug!("binding sub: {sub_long}");
@@ -107,7 +104,8 @@ pub(super) fn compile_recursive(
         if !all && doesnt_start_with_prefix {
             continue;
         }
-        for (short, long) in compile_recursive(prefix.clone(), sub, sub_long, lbuf, all) {
+        let prefix = format!("{prefix_str}{long}");
+        for (short, long) in compile_recursive(prefix, sub, sub_long, lbuf, all) {
             bind(short, long);
         }
     }
@@ -118,7 +116,7 @@ pub(super) fn compile(cmds: &Cmds, lbuf: &str, all: bool) -> BTreeMap<String, St
     let mut r = BTreeMap::new();
     for (long, cmd) in &cmds.0 {
         if lbuf.is_empty() || lbuf.starts_with(&cmd.short) || lbuf.starts_with(long) {
-            r.extend(compile_recursive(Vec::new(), cmd, long, lbuf, all))
+            r.extend(compile_recursive(String::new(), cmd, long, lbuf, all))
         }
     }
     r
