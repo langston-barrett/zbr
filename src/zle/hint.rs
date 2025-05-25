@@ -139,32 +139,17 @@ mod tests {
     fn test_hint_flag() {
         let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
         assert_eq!(
-            hint(&conf, String::from("docker -"), 30)
+            hint(&conf, String::from("git rebase -"), 30)
                 .iter()
                 .map(|(k, v)| (k.as_str(), v.as_str()))
                 .collect::<Vec<_>>(),
             [
-                ("docker --conf", "docker --config "),
-                ("docker --cont", "docker --context "),
-                ("docker --d", "docker --debug "),
-                ("docker --h", "docker --host "),
-                ("docker --l", "docker --log-level "),
-                ("docker --tlsca", "docker --tlscacert "),
-                ("docker --tlsce", "docker --tlscert "),
-                ("docker --tlsk", "docker --tlskey "),
-                ("docker --tlsv", "docker --tlsverify "),
-                ("docker --v", "docker --version "),
-                ("docker -cf", "docker --config "),
-                ("docker -ct", "docker --context "),
-                ("docker -dg", "docker --debug "),
-                ("docker -ho", "docker --host "),
-                ("docker -l-", "docker --log-level "),
-                ("docker -tk", "docker --tlskey "),
-                ("docker -tla", "docker --tlscacert "),
-                ("docker -tle", "docker --tlscert "),
-                ("docker -ts", "docker --tls "),
-                ("docker -tv", "docker --tlsverify "),
-                ("docker -vn", "docker --version ")
+                ("git rebase --a", "git rebase --abort "),
+                ("git rebase --c", "git rebase --continue "),
+                ("git rebase --i", "git rebase --interactive "),
+                ("git rebase -a", "git rebase --abort "),
+                ("git rebase -c", "git rebase --continue "),
+                ("git rebase -i", "git rebase --interactive ")
             ]
         );
     }

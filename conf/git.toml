@@ -202,8 +202,14 @@ squish = true
 [subs.filter-branch]
 stop = true
 
+[subs.init]
+short = "i"
+
 [subs.log]
 short = "lg"
+
+[subs.merge]
+short = "m"
 
 [subs.pull]
 short = "pl"
@@ -276,6 +282,20 @@ exact_subs = [
 
 [subs.submodule.subs.update.flags.--init]
 short = "i"
+squish = true
+
+[subs.tag]
+short = "t"
+
+[subs.tag.flags.--delete]
+short = "d"
+squish = true
+
+[subs.tag.flags.--force]
+short = "f"
+
+[subs.tag.flags.--list]
+short = "l"
 squish = true
 
 [subs.worktree]

@@ -95,11 +95,11 @@ short = "l"
 [cmds.cabal.subs.list-bin]
 short = "lb"
 
+[cmds.cabal.subs.new-haddock-project]
+short = "ne"
+
 [cmds.cabal.subs.outdated]
 short = "o"
-
-[cmds.cabal.subs.path]
-short = "p"
 
 [cmds.cabal.subs.repl]
 short = "rl"
@@ -186,7 +186,10 @@ short = "v2-e"
 short = "v2-f"
 
 [cmds.cabal.subs.v2-haddock]
-short = "v2-h"
+short = "vk"
+
+[cmds.cabal.subs.v2-haddock-project]
+short = "v-"
 
 [cmds.cabal.subs.v2-install]
 short = "v2-i"
@@ -387,13 +390,13 @@ short = "y"
 short = "dk"
 
 [cmds.docker.flags.--config]
-short = "cf"
+short = "cg"
 
 [cmds.docker.flags.--context]
 short = "ct"
 
 [cmds.docker.flags.--debug]
-short = "dg"
+short = "de"
 
 [cmds.docker.flags.--host]
 short = "ho"
@@ -419,11 +422,8 @@ short = "tv"
 [cmds.docker.flags.--version]
 short = "vn"
 
-[cmds.docker.subs.ai]
-short = "ai"
-
 [cmds.docker.subs.attach]
-short = "at"
+short = "a"
 
 [cmds.docker.subs.build]
 short = "bd"
@@ -434,14 +434,29 @@ short = "be"
 [cmds.docker.subs.buildx]
 short = "bx"
 
-[cmds.docker.subs.cloud]
-short = "cl"
+[cmds.docker.subs.checkpoint]
+short = "ch"
 
 [cmds.docker.subs.commit]
 short = "com"
 
 [cmds.docker.subs.compose]
 short = "cop"
+
+[cmds.docker.subs.config]
+short = "cg"
+
+[cmds.docker.subs.config.subs.create]
+short = "c"
+
+[cmds.docker.subs.config.subs.inspect]
+short = "i"
+
+[cmds.docker.subs.config.subs.ls]
+short = "l"
+
+[cmds.docker.subs.config.subs.rm]
+short = "r"
 
 [cmds.docker.subs.container]
 short = "ca"
@@ -560,15 +575,6 @@ short = "cr"
 [cmds.docker.subs.daemon]
 short = "da"
 
-[cmds.docker.subs.debug]
-short = "dg"
-
-[cmds.docker.subs.desktop]
-short = "ds"
-
-[cmds.docker.subs.dev]
-short = "dv"
-
 [cmds.docker.subs.diff]
 short = "di"
 
@@ -580,9 +586,6 @@ short = "ee"
 
 [cmds.docker.subs.export]
 short = "ep"
-
-[cmds.docker.subs.extension]
-short = "et"
 
 [cmds.docker.subs.history]
 short = "hi"
@@ -635,9 +638,6 @@ short = "ip"
 [cmds.docker.subs.info]
 short = "inf"
 
-[cmds.docker.subs.init]
-short = "ini"
-
 [cmds.docker.subs.inspect]
 short = "ins"
 
@@ -657,7 +657,7 @@ short = "lo"
 short = "ls"
 
 [cmds.docker.subs.manifest]
-short = "ma"
+short = "m"
 
 [cmds.docker.subs.manifest.subs.annotate]
 short = "a"
@@ -680,11 +680,8 @@ short = "p"
 [cmds.docker.subs.manifest.subs.rm]
 short = "r"
 
-[cmds.docker.subs.model]
-short = "mo"
-
 [cmds.docker.subs.network]
-short = "n"
+short = "ne"
 
 [cmds.docker.subs.network.subs.connect]
 short = "co"
@@ -706,6 +703,30 @@ short = "p"
 
 [cmds.docker.subs.network.subs.rm]
 short = "r"
+
+[cmds.docker.subs.node]
+short = "no"
+
+[cmds.docker.subs.node.subs.demote]
+short = "d"
+
+[cmds.docker.subs.node.subs.inspect]
+short = "i"
+
+[cmds.docker.subs.node.subs.ls]
+short = "l"
+
+[cmds.docker.subs.node.subs.promote]
+short = "pr"
+
+[cmds.docker.subs.node.subs.ps]
+short = "ps"
+
+[cmds.docker.subs.node.subs.rm]
+short = "r"
+
+[cmds.docker.subs.node.subs.update]
+short = "u"
 
 [cmds.docker.subs.pause]
 short = "pa"
@@ -773,14 +794,74 @@ short = "ru"
 [cmds.docker.subs.save]
 short = "sa"
 
-[cmds.docker.subs.sbom]
-short = "sb"
+[cmds.docker.subs.search]
+short = "sea"
 
-[cmds.docker.subs.scout]
+[cmds.docker.subs.secret]
+short = "sec"
+
+[cmds.docker.subs.secret.subs.create]
+short = "c"
+
+[cmds.docker.subs.secret.subs.inspect]
+short = "i"
+
+[cmds.docker.subs.secret.subs.ls]
+short = "l"
+
+[cmds.docker.subs.secret.subs.rm]
+short = "r"
+
+[cmds.docker.subs.service]
+short = "ser"
+
+[cmds.docker.subs.service.subs.create]
+short = "c"
+
+[cmds.docker.subs.service.subs.inspect]
+short = "i"
+
+[cmds.docker.subs.service.subs.logs]
+short = "lo"
+
+[cmds.docker.subs.service.subs.ls]
+short = "ls"
+
+[cmds.docker.subs.service.subs.ps]
+short = "p"
+
+[cmds.docker.subs.service.subs.rm]
+short = "rm"
+
+[cmds.docker.subs.service.subs.rollback]
+short = "ro"
+
+[cmds.docker.subs.service.subs.scale]
+short = "s"
+
+[cmds.docker.subs.service.subs.update]
+short = "u"
+
+[cmds.docker.subs.stack]
 short = "sc"
 
-[cmds.docker.subs.search]
-short = "se"
+[cmds.docker.subs.stack.subs.config]
+short = "c"
+
+[cmds.docker.subs.stack.subs.deploy]
+short = "d"
+
+[cmds.docker.subs.stack.subs.ls]
+short = "l"
+
+[cmds.docker.subs.stack.subs.ps]
+short = "p"
+
+[cmds.docker.subs.stack.subs.rm]
+short = "r"
+
+[cmds.docker.subs.stack.subs.services]
+short = "s"
 
 [cmds.docker.subs.start]
 short = "sr"
@@ -794,11 +875,29 @@ short = "so"
 [cmds.docker.subs.swarm]
 short = "sw"
 
+[cmds.docker.subs.swarm.subs.ca]
+short = "c"
+
 [cmds.docker.subs.swarm.subs.init]
 short = "i"
 
 [cmds.docker.subs.swarm.subs.join]
-short = "j"
+short = "jn"
+
+[cmds.docker.subs.swarm.subs.join-token]
+short = "j-"
+
+[cmds.docker.subs.swarm.subs.leave]
+short = "l"
+
+[cmds.docker.subs.swarm.subs.unlock]
+short = "uk"
+
+[cmds.docker.subs.swarm.subs.unlock-key]
+short = "u-"
+
+[cmds.docker.subs.swarm.subs.update]
+short = "up"
 
 [cmds.docker.subs.system]
 short = "sy"
@@ -866,6 +965,9 @@ short = "p"
 [cmds.docker.subs.volume.subs.rm]
 short = "r"
 
+[cmds.docker.subs.volume.subs.update]
+short = "u"
+
 [cmds.docker.subs.wait]
 short = "w"
 
@@ -878,11 +980,8 @@ short = "h"
 [cmds.gh.flags.--version]
 short = "ve"
 
-[cmds.gh.subs.accessibility]
-short = "acc"
-
 [cmds.gh.subs.actions]
-short = "act"
+short = "ac"
 
 [cmds.gh.subs.alias]
 short = "al"
@@ -1143,9 +1242,6 @@ short = "arm"
 [cmds.git.subs.archive]
 short = "arv"
 
-[cmds.git.subs.backfill]
-short = "ba"
-
 [cmds.git.subs.bisect]
 short = "bi"
 
@@ -1345,7 +1441,7 @@ short = "im"
 short = "id"
 
 [cmds.git.subs.init]
-short = "ii"
+short = "i"
 
 [cmds.git.subs.instaweb]
 short = "is"
@@ -1378,7 +1474,7 @@ short = "ms"
 short = "mn"
 
 [cmds.git.subs.merge]
-short = "me"
+short = "m"
 
 [cmds.git.subs.merge-base]
 short = "meb"
@@ -1634,7 +1730,18 @@ short = "sw"
 short = "sy"
 
 [cmds.git.subs.tag]
-short = "t"
+short = "tg"
+
+[cmds.git.subs.tag.flags.--delete]
+short = "d"
+squish = true
+
+[cmds.git.subs.tag.flags.--force]
+short = "f"
+
+[cmds.git.subs.tag.flags.--list]
+short = "l"
+squish = true
 
 [cmds.git.subs.unpack-file]
 short = "uf"
@@ -1711,20 +1818,17 @@ short = "ap"
 [cmds.glab.subs.api.subs.appropriate]
 short = "a"
 
-[cmds.glab.subs.api.subs.interpreted]
-short = "i"
+[cmds.glab.subs.api.subs.queryendCursor]
+short = "q"
+
+[cmds.glab.subs.ask]
+short = "as"
 
 [cmds.glab.subs.auth]
 short = "au"
 
-[cmds.glab.subs.auth.subs.dpop-gen]
-short = "d"
-
 [cmds.glab.subs.auth.subs.login]
-short = "li"
-
-[cmds.glab.subs.auth.subs.logout]
-short = "lo"
+short = "l"
 
 [cmds.glab.subs.auth.subs.status]
 short = "s"
@@ -1741,11 +1845,8 @@ short = "ci"
 [cmds.glab.subs.ci.subs.artifact]
 short = "a"
 
-[cmds.glab.subs.ci.subs.cancel]
-short = "ca"
-
 [cmds.glab.subs.ci.subs.config]
-short = "co"
+short = "c"
 
 [cmds.glab.subs.ci.subs.delete]
 short = "d"
@@ -1786,29 +1887,14 @@ short = "cl"
 [cmds.glab.subs.completion]
 short = "cm"
 
-[cmds.glab.subs.completion.subs.it]
-short = "i"
-
-[cmds.glab.subs.completion.subs.your]
-short = "y"
-
 [cmds.glab.subs.config]
 short = "cn"
-
-[cmds.glab.subs.config.subs.edit]
-short = "e"
 
 [cmds.glab.subs.config.subs.get]
 short = "g"
 
-[cmds.glab.subs.config.subs.notty]
-short = "n"
-
 [cmds.glab.subs.config.subs.set]
 short = "s"
-
-[cmds.glab.subs.duo]
-short = "d"
 
 [cmds.glab.subs.help]
 short = "hp"
@@ -1861,9 +1947,6 @@ short = "l"
 [cmds.glab.subs.label.subs.create]
 short = "c"
 
-[cmds.glab.subs.label.subs.delete]
-short = "d"
-
 [cmds.glab.subs.label.subs.list]
 short = "l"
 
@@ -1890,9 +1973,6 @@ short = "de"
 
 [cmds.glab.subs.mr.subs.diff]
 short = "di"
-
-[cmds.glab.subs.mr.subs.do]
-short = "do"
 
 [cmds.glab.subs.mr.subs.for]
 short = "f"
@@ -1981,9 +2061,6 @@ short = "l"
 [cmds.glab.subs.repo.subs.mirror]
 short = "m"
 
-[cmds.glab.subs.repo.subs.publish]
-short = "p"
-
 [cmds.glab.subs.repo.subs.search]
 short = "s"
 
@@ -1995,9 +2072,6 @@ short = "v"
 
 [cmds.glab.subs.schedule]
 short = "sc"
-
-[cmds.glab.subs.securefile]
-short = "se"
 
 [cmds.glab.subs.snippet]
 short = "sn"
@@ -2017,14 +2091,8 @@ short = "g"
 [cmds.glab.subs.ssh-key.subs.list]
 short = "l"
 
-[cmds.glab.subs.stack]
-short = "st"
-
 [cmds.glab.subs.the]
-short = "th"
-
-[cmds.glab.subs.token]
-short = "to"
+short = "t"
 
 [cmds.glab.subs.user]
 short = "u"
@@ -2040,9 +2108,6 @@ short = "d"
 
 [cmds.glab.subs.variable.subs.export]
 short = "e"
-
-[cmds.glab.subs.variable.subs.get]
-short = "g"
 
 [cmds.glab.subs.variable.subs.list]
 short = "l"
