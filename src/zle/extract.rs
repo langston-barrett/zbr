@@ -202,7 +202,7 @@ fn extract_opt(mut words: &[&str]) -> Option<Opt> {
     if words.is_empty() {
         return None;
     }
-    let mut first = &words[0];
+    let first = &words[0];
     let short = if first.starts_with('-') && !first.starts_with(LONG) {
         words = &words[1..];
         let mut chars = first.chars();
@@ -212,21 +212,20 @@ fn extract_opt(mut words: &[&str]) -> Option<Opt> {
         None
     };
 
-    while !words.is_empty() {
-        first = &words[0];
-        words = &words[1..];
+    while let Some((first, rest)) = words.split_first() {
+        words = rest;
         if !first.starts_with(LONG) || first.len() <= LONG.len() {
             continue;
         }
+        debug!("Found potential option (`--`) in {words:?}");
         let mut opt = &first[LONG.len()..];
         if opt.starts_with('-') {
             continue;
         }
-        if let Some(idx) = opt.find('=') {
-            opt = &opt[..idx];
-        }
-        if let Some(idx) = opt.find('[') {
-            opt = &opt[..idx];
+        for delim in ['=', '[', ']'] {
+            if let Some(idx) = opt.find(delim) {
+                opt = &opt[..idx];
+            }
         }
         let long = opt
             .chars()
@@ -243,23 +242,22 @@ fn extract_opt(mut words: &[&str]) -> Option<Opt> {
 fn extract_text(conf: &ConfigFile, text: String) -> (HashMap<String, Flag>, Cmds) {
     let mut opts = HashSet::new();
     let mut sub_names = HashSet::<String>::from_iter(conf.extra_subs.iter().cloned());
-    for mut line in text.lines() {
-        if !line.starts_with([' ', ' ']) {
-            continue;
-        }
-        line = line.trim_start();
-        let words = line.split_whitespace().collect::<Vec<_>>();
-
-        if conf.extract_subs {
+    if conf.extract_subs {
+        for mut line in text.lines() {
+            if !line.starts_with([' ', ' ']) {
+                continue;
+            }
+            line = line.trim_start();
+            let words = line.split_whitespace().collect::<Vec<_>>();
             if let Some(long) = extract_sub(words.as_slice()) {
                 sub_names.insert(long);
             }
         }
-
-        if conf.extract_flags {
-            if !line.contains(['-', '-']) {
-                continue;
-            }
+    }
+    if conf.extract_flags {
+        for mut line in text.lines() {
+            line = line.trim_start();
+            let words = line.split_whitespace().collect::<Vec<_>>();
             if let Some(opt) = extract_opt(words.as_slice()) {
                 opts.insert(opt);
             }
@@ -1335,6 +1333,7 @@ FEEDBACK
                 ("cg", "config"),
                 ("ct", "context"),
                 ("de", "debug"),
+                ("he", "help"),
                 ("ho", "host"),
                 ("l-", "log-level"),
                 ("tk", "tlskey"),
@@ -1422,7 +1421,7 @@ FEEDBACK
                 .iter()
                 .map(|(k, v)| (k.as_str(), v.as_str()))
                 .collect::<Vec<_>>(),
-            [("pg", "paginate")]
+            [("pg", "paginate"), ("vs", "version")]
         );
         assert_eq!(
             subs.iter()
