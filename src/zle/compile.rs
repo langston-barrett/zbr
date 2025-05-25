@@ -6,13 +6,13 @@ use super::abbrev::unique_prefixes;
 use super::extract::{Cmd, Cmds};
 
 pub(super) fn compile_recursive(
-    mut prefix_str: String,
+    mut pfx: String,
     cmd: &Cmd,
     long: &str,
     lbuf: &str,
     all: bool,
 ) -> BTreeMap<String, String> {
-    debug!("Prefix: {prefix_str}");
+    debug!("Prefix: {pfx}");
     let mut m = BTreeMap::new();
     let mut bind = |k: String, mut v: String| -> bool {
         debug!("considering binding '{k}' to '{v}'");
@@ -32,18 +32,18 @@ pub(super) fn compile_recursive(
         true
     };
 
-    if !prefix_str.is_empty() && !prefix_str.ends_with(' ') {
-        prefix_str.push(' ');
+    if !pfx.is_empty() && !pfx.ends_with(' ') {
+        pfx.push(' ');
     }
-    if !all && prefix_str.len() > lbuf.len() + 1 {
+    if !all && pfx.len() > lbuf.len() + 1 {
         return m;
     }
 
     // Shouldn't have made the recursive call if this isn't the case
-    debug_assert!(all || lbuf.starts_with(&prefix_str) || prefix_str.starts_with(lbuf));
+    debug_assert!(all || lbuf.starts_with(&pfx) || pfx.starts_with(lbuf));
     let short = &cmd.short;
-    let pre_short = format!("{prefix_str}{short}");
-    let pre_long = format!("{prefix_str}{long}");
+    let pre_short = format!("{pfx}{short}");
+    let pre_long = format!("{pfx}{long}");
     debug_assert!(pre_short.len() <= pre_long.len());
     let doesnt_start_with_prefix = !lbuf.starts_with(&pre_long);
     if !all
@@ -59,22 +59,19 @@ pub(super) fn compile_recursive(
     bind(pre_short, pre_long);
 
     for (f, fl) in &cmd.flags {
-        let expanded = format!("{prefix_str}{long} {f}");
-        bind(
-            format!("{prefix_str}{long} -{}", fl.short),
-            expanded.clone(),
-        );
+        let expanded = format!("{pfx}{long} {f}");
+        bind(format!("{pfx}{long} -{}", fl.short), expanded.clone());
         if fl.squish {
-            bind(format!("{prefix_str}{short}{}", fl.short), expanded);
+            bind(format!("{pfx}{short}{}", fl.short), expanded);
         }
     }
     for (sub_long, sub) in &cmd.subs.0 {
         let sub_short = &sub.short;
         debug!("binding sub: {sub_long}");
 
-        let k = format!("{prefix_str}{short}{sub_short}");
+        let k = format!("{pfx}{short}{sub_short}");
         let starts_with_key = lbuf.starts_with(&k);
-        bind(k, format!("{prefix_str}{long} {sub_long}"));
+        bind(k, format!("{pfx}{long} {sub_long}"));
         if !starts_with_key {
             continue;
         }
@@ -85,16 +82,16 @@ pub(super) fn compile_recursive(
             let k = format!("{sub_short}{}", sub_sub.short);
             if !cmd.subs.0.contains_key(&k) {
                 bind(
-                    format!("{prefix_str}{short}{k}"),
-                    format!("{prefix_str}{long} {sub_long} {sub_sub_long}"),
+                    format!("{pfx}{short}{k}"),
+                    format!("{pfx}{long} {sub_long} {sub_sub_long}"),
                 );
             }
         }
         for (f, fl) in &sub.flags {
             if fl.squish {
                 bind(
-                    format!("{prefix_str}{short}{sub_short}{}", fl.short),
-                    format!("{prefix_str}{long} {sub_long} {f}"),
+                    format!("{pfx}{short}{sub_short}{}", fl.short),
+                    format!("{pfx}{long} {sub_long} {f}"),
                 );
             }
         }
@@ -104,7 +101,7 @@ pub(super) fn compile_recursive(
         if !all && doesnt_start_with_prefix {
             continue;
         }
-        let prefix = format!("{prefix_str}{long}");
+        let prefix = format!("{pfx}{long}");
         for (short, long) in compile_recursive(prefix, sub, sub_long, lbuf, all) {
             bind(short, long);
         }
