@@ -260,6 +260,10 @@ short = "bi"
 [cmds.cargo.subs.build]
 short = "b"
 
+[cmds.cargo.subs.build.flags.--release]
+short = "r"
+squish = true
+
 [cmds.cargo.subs.careful]
 short = "ca"
 
@@ -1730,7 +1734,7 @@ short = "sw"
 short = "sy"
 
 [cmds.git.subs.tag]
-short = "tg"
+short = "t"
 
 [cmds.git.subs.tag.flags.--delete]
 short = "d"

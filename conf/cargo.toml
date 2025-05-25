@@ -55,6 +55,10 @@ flags = {}
 [subs.build]
 short = "b"
 
+[subs.build.flags.--release]
+short = "r"
+squish = true
+
 [subs.check]
 short = "c"
 
