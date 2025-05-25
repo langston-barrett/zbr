@@ -406,6 +406,9 @@ short = "ct"
 [cmds.docker.flags.--debug]
 short = "de"
 
+[cmds.docker.flags.--help]
+short = "he"
+
 [cmds.docker.flags.--host]
 short = "ho"
 
@@ -1227,6 +1230,9 @@ short = "g"
 
 [cmds.git.flags.--paginate]
 short = "pg"
+
+[cmds.git.flags.--version]
+short = "vs"
 
 [cmds.git.subs.add]
 short = "a"
