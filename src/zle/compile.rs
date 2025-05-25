@@ -15,11 +15,12 @@ pub(super) fn compile_recursive(
 ) -> BTreeMap<String, String> {
     debug!("Prefix: {prefix:?}");
     let mut m = BTreeMap::new();
-    let mut bind = |k: String, mut v: String| {
+    let mut bind = |k: String, mut v: String| -> bool {
+        debug!("considering binding '{k}' to '{v}'");
         if !all && !k.starts_with(lbuf) && !v.starts_with(lbuf) {
             // Ideally, we could avoid ever being in this case
             // warn!("Irrelevant to {lbuf}: {k} {v}");
-            return;
+            return false;
         }
         debug!("binding '{k}' to '{v}'");
         if let Some(existing) = m.get(k.as_str()) {
@@ -29,6 +30,7 @@ pub(super) fn compile_recursive(
             v = format!("{v} ");
         }
         m.insert(k, v);
+        true
     };
 
     let mut prefix_str = prefix.join(" ");
