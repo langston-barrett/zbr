@@ -76,6 +76,17 @@ pub(super) fn compile_recursive(
             format!("{prefix_str}{short}{sub_short}"),
             format!("{prefix_str}{long} {sub_long}"),
         );
+        // e.g., bind `gsuu` to `git submodule update`
+        // TODO: Do this recursively
+        for (sub_sub_long, sub_sub) in &sub.subs.0 {
+            let k = format!("{sub_short}{}", sub_sub.short);
+            if !cmd.subs.0.contains_key(&k) {
+                bind(
+                    format!("{prefix_str}{short}{k}"),
+                    format!("{prefix_str}{long} {sub_long} {sub_sub_long}"),
+                );
+            }
+        }
         for (f, fl) in &sub.flags {
             if fl.squish {
                 bind(
