@@ -32,31 +32,28 @@ mod tests {
     }
 
     #[test]
-    fn test_hint() {
+    fn test_hint_git_s() {
         let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
-        assert_eq!(
-            hint(&conf, String::from("git s"), 5)
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("git s", "git status "),
-                ("git see", "git send-email "),
-                ("git send-e", "git send-email "),
-                ("git send-p", "git send-pack "),
-                ("git sep", "git send-pack ")
-            ]
-        );
-        assert_eq!(
-            hint(&conf, String::from("git shor"), 5)
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("git shor", "git shortlog "),
-                ("git short", "git shortlog ")
-            ]
-        );
+        let hints = hint(&conf, String::from("git s"), 5);
+        let expected = expect![[r#"
+            git s -> git status 
+            git see -> git send-email 
+            git send-e -> git send-email 
+            git send-p -> git send-pack 
+            git sep -> git send-pack 
+        "#]];
+        expected.assert_eq(&serialize(&hints));
+    }
+
+    #[test]
+    fn test_hint_git_shor() {
+        let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
+        let hints = hint(&conf, String::from("git shor"), 5);
+        let expected = expect![[r#"
+            git shor -> git shortlog 
+            git short -> git shortlog 
+        "#]];
+        expected.assert_eq(&serialize(&hints));
     }
 
     #[test]
