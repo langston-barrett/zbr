@@ -101,3 +101,37 @@ pub(crate) fn expand(conf: ConfigFile, lbuf: String, rbuf: String) -> Option<Str
     debug!("expanded = {expanded:?}");
     expanded.map(|s| format!("{prefix}{s}"))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::expand;
+
+    fn test_expand(l: &str, r: &str) {
+        let conf = super::ConfigFile::from_file("conf/conf.toml").unwrap();
+        assert_eq!(
+            expand(conf, String::from(l), String::new()).as_deref(),
+            Some(r)
+        );
+    }
+
+    #[test]
+    fn test_expand_grba() {
+        test_expand("grba", "git rebase --abort ");
+    }
+
+    #[test]
+    fn test_expand_gsu() {
+        test_expand("gsu", "git submodule ");
+    }
+
+    #[test]
+    fn test_expand_gsuui() {
+        // TODO
+        // test_expand("gsuui", "git submodule update --init");
+    }
+
+    #[test]
+    fn test_expand_git_commit_m() {
+        test_expand("git commit -m", "git commit --message ");
+    }
+}

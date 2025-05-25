@@ -60,6 +60,16 @@ mod tests {
     }
 
     #[test]
+    fn test_hint_git_commit_m() {
+        let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
+        let hints = hint(&conf, String::from("git commit -m"), usize::MAX);
+        let expected = expect![[r#"
+            git commit -m -> git commit --message 
+        "#]];
+        expected.assert_eq(&serialize(&hints));
+    }
+
+    #[test]
     fn test_hint_git_submo() {
         let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
         assert_eq!(
@@ -77,19 +87,23 @@ mod tests {
     #[test]
     fn test_hint_git_submodule() {
         let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
-        assert_eq!(
-            hint(&conf, String::from("git submodule"), 5)
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("git submodule ab", "git submodule absorbgitdirs "),
-                ("git submodule ad", "git submodule add "),
-                ("git submodule d", "git submodule deinit "),
-                ("git submodule f", "git submodule foreach "),
-                ("git submodule i", "git submodule init ")
-            ]
-        );
+        let hints = hint(&conf, String::from("git submodule"), usize::MAX);
+        let expected = expect![[r#"
+            git submodule ab -> git submodule absorbgitdirs 
+            git submodule ad -> git submodule add 
+            git submodule d -> git submodule deinit 
+            git submodule f -> git submodule foreach 
+            git submodule i -> git submodule init 
+            git submodule seb -> git submodule set-branch 
+            git submodule seu -> git submodule set-url 
+            git submodule st -> git submodule status 
+            git submodule su -> git submodule summary 
+            git submodule sy -> git submodule sync 
+            git submodule u -> git submodule update 
+            git submodule ui -> git submodule update --init 
+            git submodule update -i -> git submodule update --init 
+        "#]];
+        expected.assert_eq(&serialize(&hints));
     }
 
     #[test]
@@ -116,30 +130,23 @@ mod tests {
     #[test]
     fn test_hint_grb() {
         let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
-        assert_eq!(
-            hint(&conf, String::from("grb"), 5)
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("grb", "git rebase "),
-                ("grba", "git rebase --abort "),
-                ("grbc", "git rebase --continue "),
-                ("grbi", "git rebase --interactive ")
-            ]
-        );
-        assert_eq!(
-            hint(&conf, String::from("git rb"), 5)
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("git rb", "git rebase "),
-                ("git rba", "git rebase --abort "),
-                ("git rbc", "git rebase --continue "),
-                ("git rbi", "git rebase --interactive ")
-            ]
-        );
+        let hints = hint(&conf, String::from("grb"), usize::MAX);
+        let expected = expect![[r#"
+            grb -> git rebase 
+            grba -> git rebase --abort 
+            grbc -> git rebase --continue 
+            grbi -> git rebase --interactive 
+        "#]];
+        expected.assert_eq(&serialize(&hints));
+
+        let hints = hint(&conf, String::from("git rb"), usize::MAX);
+        let expected = expect![[r#"
+            git rb -> git rebase 
+            git rba -> git rebase --abort 
+            git rbc -> git rebase --continue 
+            git rbi -> git rebase --interactive 
+        "#]];
+        expected.assert_eq(&serialize(&hints));
     }
 
     #[test]
@@ -159,20 +166,16 @@ mod tests {
     #[test]
     fn test_hint_flag() {
         let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
-        assert_eq!(
-            hint(&conf, String::from("git rebase -"), 30)
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("git rebase --a", "git rebase --abort "),
-                ("git rebase --c", "git rebase --continue "),
-                ("git rebase --i", "git rebase --interactive "),
-                ("git rebase -a", "git rebase --abort "),
-                ("git rebase -c", "git rebase --continue "),
-                ("git rebase -i", "git rebase --interactive ")
-            ]
-        );
+        let hints = hint(&conf, String::from("git rebase -"), usize::MAX);
+        let expected = expect![[r#"
+            git rebase --a -> git rebase --abort 
+            git rebase --c -> git rebase --continue 
+            git rebase --i -> git rebase --interactive 
+            git rebase -a -> git rebase --abort 
+            git rebase -c -> git rebase --continue 
+            git rebase -i -> git rebase --interactive 
+        "#]];
+        expected.assert_eq(&serialize(&hints));
     }
 
     #[test]

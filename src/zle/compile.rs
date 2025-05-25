@@ -14,8 +14,10 @@ pub(super) fn compile_recursive(
 ) -> BTreeMap<String, String> {
     debug!("Prefix: {pfx}");
     let mut m = BTreeMap::new();
-    let mut bind = |k: String, mut v: String| -> bool {
+    let mut bind = |k: String, v: String| -> bool {
         debug!("considering binding '{k}' to '{v}'");
+        debug_assert!(!k.ends_with(' '));
+        debug_assert!(v.ends_with(' '));
         if !all && !k.starts_with(lbuf) && !v.starts_with(lbuf) {
             // Ideally, we could avoid ever being in this case
             // warn!("Irrelevant to {lbuf}: {k} {v}");
@@ -24,9 +26,6 @@ pub(super) fn compile_recursive(
         debug!("binding '{k}' to '{v}'");
         if let Some(existing) = m.get(k.as_str()) {
             warn!("Map already contained key! {k} -> {v}, {existing}");
-        }
-        if !v.ends_with(' ') {
-            v = format!("{v} ");
         }
         m.insert(k, v);
         true
@@ -43,7 +42,7 @@ pub(super) fn compile_recursive(
     debug_assert!(all || lbuf.starts_with(&pfx) || pfx.starts_with(lbuf));
     let short = &cmd.short;
     let pre_short = format!("{pfx}{short}");
-    let pre_long = format!("{pfx}{long}");
+    let mut pre_long = format!("{pfx}{long}");
     debug_assert!(pre_short.len() <= pre_long.len());
     let doesnt_start_with_prefix = !lbuf.starts_with(&pre_long);
     if !all
@@ -56,10 +55,11 @@ pub(super) fn compile_recursive(
         return m;
     }
     debug!("binding root");
+    pre_long.push(' ');
     bind(pre_short, pre_long);
 
     for (f, fl) in &cmd.flags {
-        let expanded = format!("{pfx}{long} {f}");
+        let expanded = format!("{pfx}{long} {f} ");
         bind(format!("{pfx}{long} -{}", fl.short), expanded.clone());
         if fl.squish {
             bind(format!("{pfx}{short}{}", fl.short), expanded);
@@ -71,7 +71,7 @@ pub(super) fn compile_recursive(
 
         let k = format!("{pfx}{short}{sub_short}");
         let starts_with_key = lbuf.starts_with(&k);
-        bind(k, format!("{pfx}{long} {sub_long}"));
+        bind(k, format!("{pfx}{long} {sub_long} "));
         if !starts_with_key {
             continue;
         }
@@ -83,7 +83,7 @@ pub(super) fn compile_recursive(
             if !cmd.subs.0.contains_key(&k) {
                 bind(
                     format!("{pfx}{short}{k}"),
-                    format!("{pfx}{long} {sub_long} {sub_sub_long}"),
+                    format!("{pfx}{long} {sub_long} {sub_sub_long} "),
                 );
             }
         }
@@ -91,16 +91,17 @@ pub(super) fn compile_recursive(
             if fl.squish {
                 bind(
                     format!("{pfx}{short}{sub_short}{}", fl.short),
-                    format!("{pfx}{long} {sub_long} {f}"),
+                    format!("{pfx}{long} {sub_long} {f} "),
                 );
             }
         }
     }
     for (sub_long, sub) in &cmd.subs.0 {
-        debug!("binding sub: {sub_long}");
+        debug!("considering binding sub: {sub_long}");
         if !all && doesnt_start_with_prefix {
             continue;
         }
+        debug!("binding sub: {sub_long}");
         let prefix = format!("{pfx}{long}");
         for (short, long) in compile_recursive(prefix, sub, sub_long, lbuf, all) {
             bind(short, long);
