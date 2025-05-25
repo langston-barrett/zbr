@@ -1324,255 +1324,239 @@ FEEDBACK
             ..ConfigFile::default()
         };
         let (flags, subs) = go(&conf, String::from(DOCKER_HELP));
-        assert_eq!(
-            flags
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("cg", "config"),
-                ("ct", "context"),
-                ("de", "debug"),
-                ("he", "help"),
-                ("ho", "host"),
-                ("l-", "log-level"),
-                ("tk", "tlskey"),
-                ("tla", "tlscacert"),
-                ("tle", "tlscert"),
-                ("ts", "tls"),
-                ("tv", "tlsverify"),
-                ("vn", "version")
-            ]
-        );
-        assert_eq!(
-            subs.iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("a", "attach"),
-                ("bd", "build"),
-                ("be", "builder"),
-                ("bx", "buildx"),
-                ("ca", "container"),
-                ("cg", "config"),
-                ("com", "commit"),
-                ("cop", "compose"),
-                ("cp", "cp"),
-                ("cr", "create"),
-                ("ct", "context"),
-                ("di", "diff"),
-                ("ee", "exec"),
-                ("ep", "export"),
-                ("ev", "events"),
-                ("hi", "history"),
-                ("ie", "image"),
-                ("inf", "info"),
-                ("ins", "inspect"),
-                ("ip", "import"),
-                ("is", "images"),
-                ("k", "kill"),
-                ("la", "load"),
-                ("li", "login"),
-                ("lo", "logout"),
-                ("ls", "logs"),
-                ("m", "manifest"),
-                ("ne", "network"),
-                ("no", "node"),
-                ("pa", "pause"),
-                ("pl", "plugin"),
-                ("po", "port"),
-                ("ps", "ps"),
-                ("pul", "pull"),
-                ("pus", "push"),
-                ("ri", "rmi"),
-                ("rm", "rm"),
-                ("rn", "rename"),
-                ("rs", "restart"),
-                ("ru", "run"),
-                ("sa", "save"),
-                ("sc", "stack"),
-                ("sea", "search"),
-                ("sec", "secret"),
-                ("ser", "service"),
-                ("so", "stop"),
-                ("sr", "start"),
-                ("st", "stats"),
-                ("sw", "swarm"),
-                ("sy", "system"),
-                ("ta", "tag"),
-                ("to", "top"),
-                ("tr", "trust"),
-                ("un", "unpause"),
-                ("up", "update"),
-                ("vn", "version"),
-                ("vo", "volume"),
-                ("w", "wait")
-            ]
-        );
+        let expected = expect![[r#"
+            cg -> config
+            ct -> context
+            de -> debug
+            he -> help
+            ho -> host
+            l- -> log-level
+            tk -> tlskey
+            tla -> tlscacert
+            tle -> tlscert
+            ts -> tls
+            tv -> tlsverify
+            vn -> version
+        "#]];
+        expected.assert_eq(&serialize(&flags));
+        let expected = expect![[r#"
+            a -> attach
+            bd -> build
+            be -> builder
+            bx -> buildx
+            ca -> container
+            cg -> config
+            com -> commit
+            cop -> compose
+            cp -> cp
+            cr -> create
+            ct -> context
+            di -> diff
+            ee -> exec
+            ep -> export
+            ev -> events
+            hi -> history
+            ie -> image
+            inf -> info
+            ins -> inspect
+            ip -> import
+            is -> images
+            k -> kill
+            la -> load
+            li -> login
+            lo -> logout
+            ls -> logs
+            m -> manifest
+            ne -> network
+            no -> node
+            pa -> pause
+            pl -> plugin
+            po -> port
+            ps -> ps
+            pul -> pull
+            pus -> push
+            ri -> rmi
+            rm -> rm
+            rn -> rename
+            rs -> restart
+            ru -> run
+            sa -> save
+            sc -> stack
+            sea -> search
+            sec -> secret
+            ser -> service
+            so -> stop
+            sr -> start
+            st -> stats
+            sw -> swarm
+            sy -> system
+            ta -> tag
+            to -> top
+            tr -> trust
+            un -> unpause
+            up -> update
+            vn -> version
+            vo -> volume
+            w -> wait
+        "#]];
+        expected.assert_eq(&serialize(&subs));
     }
 
     #[test]
     fn extract_git() {
         let conf = ConfigFile::from_file(PathBuf::from("conf/git.toml"));
         let (flags, subs) = go(&conf, String::from(GIT_HELP));
-        // TODO: flags
-        assert_eq!(
-            flags
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [("pg", "paginate"), ("vs", "version")]
-        );
-        assert_eq!(
-            subs.iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("a", "add"),
-                ("am", "am"),
-                ("an", "annotate"),
-                ("ap", "apply"),
-                ("arm", "archimport"),
-                ("arv", "archive"),
-                ("b", "branch"),
-                ("bg", "bugreport"),
-                ("bi", "bisect"),
-                ("bl", "blame"),
-                ("bn", "bundle"),
-                ("c-", "cherry-pick"),
-                ("ca", "cat-file"),
-                ("cc", "credential-cache"),
-                ("ce", "clean"),
-                ("cg", "commit-graph"),
-                ("cha", "check-attr"),
-                ("chi", "check-ignore"),
-                ("chm", "check-mailmap"),
-                ("cho", "checkout-index"),
-                ("chr", "check-ref-format"),
-                ("ci", "citool"),
-                ("cl", "clone"),
-                ("cm", "commit"),
-                ("cn", "credential-netrc"),
-                ("co", "checkout"),
-                ("col", "column"),
-                ("con", "config"),
-                ("cou", "count-objects"),
-                ("crl", "credential"),
-                ("cs", "credential-store"),
-                ("ct", "commit-tree"),
-                ("cve", "cvsexportcommit"),
-                ("cvi", "cvsimport"),
-                ("cvs", "cvsserver"),
-                ("cy", "cherry"),
-                ("d", "diff"),
-                ("de", "describe"),
-                ("df", "diff-files"),
-                ("di", "diff-index"),
-                ("dit", "difftool"),
-                ("dt", "diff-tree"),
-                ("f", "fetch"),
-                ("fae", "fast-export"),
-                ("fai", "fast-import"),
-                ("fe", "fetch-pack"),
-                ("ff", "for-each-ref"),
-                ("fi", "filter-branch"),
-                ("fm", "fmt-merge-msg"),
-                ("fom", "format-patch"),
-                ("fp", "for-each-repo"),
-                ("fs", "fsck"),
-                ("gc", "gc"),
-                ("ge", "get-tar-commit-id"),
-                ("gk", "gitk"),
-                ("gr", "grep"),
-                ("gu", "gui"),
-                ("gw", "gitweb"),
-                ("ha", "hash-object"),
-                ("he", "help"),
-                ("ho", "hook"),
-                ("ht", "http-backend"),
-                ("i", "init"),
-                ("id", "index-pack"),
-                ("im", "imap-send"),
-                ("is", "instaweb"),
-                ("it", "interpret-trailers"),
-                ("lf", "lfs"),
-                ("lg", "log"),
-                ("lsf", "ls-files"),
-                ("lsr", "ls-remote"),
-                ("lst", "ls-tree"),
-                ("m", "merge"),
-                ("ma", "mktag"),
-                ("meb", "merge-base"),
-                ("mef", "merge-file"),
-                ("mei", "merge-index"),
-                ("meo", "merge-one-file"),
-                ("met", "merge-tree"),
-                ("mi", "mailinfo"),
-                ("mn", "maintenance"),
-                ("mr", "mktree"),
-                ("ms", "mailsplit"),
-                ("mt", "mergetool"),
-                ("mu", "multi-pack-index"),
-                ("mv", "mv"),
-                ("na", "name-rev"),
-                ("no", "notes"),
-                ("p", "push"),
-                ("p-", "prune-packed"),
-                ("p4", "p4"),
-                ("pad", "pack-redundant"),
-                ("paf", "pack-refs"),
-                ("pe", "prune"),
-                ("pl", "pull"),
-                ("po", "pack-objects"),
-                ("pt", "patch-id"),
-                ("q", "quiltimport"),
-                ("ra", "range-diff"),
-                ("rb", "rebase"),
-                ("re", "revert"),
-                ("rea", "read-tree"),
-                ("ref", "reflog"),
-                ("rem", "remote"),
-                ("repa", "repack"),
-                ("repl", "replace"),
-                ("req", "request-pull"),
-                ("rer", "rerere"),
-                ("res", "restore"),
-                ("rl", "rev-list"),
-                ("rm", "rm"),
-                ("rp", "rev-parse"),
-                ("rs", "reset"),
-                ("s", "status"),
-                ("see", "send-email"),
-                ("sep", "send-pack"),
-                ("sh", "stash"),
-                ("showb", "show-branch"),
-                ("showi", "show-index"),
-                ("showr", "show-ref"),
-                ("shr", "shortlog"),
-                ("shw", "show"),
-                ("si", "sh-i18n"),
-                ("sp", "sparse-checkout"),
-                ("ss", "sh-setup"),
-                ("st", "stripspace"),
-                ("su", "submodule"),
-                ("sv", "svn"),
-                ("sw", "switch"),
-                ("sy", "symbolic-ref"),
-                ("t", "tag"),
-                ("uf", "unpack-file"),
-                ("ui", "update-index"),
-                ("uo", "unpack-objects"),
-                ("ur", "update-ref"),
-                ("us", "update-server-info"),
-                ("va", "var"),
-                ("vc", "verify-commit"),
-                ("vp", "verify-pack"),
-                ("vt", "verify-tag"),
-                ("wh", "whatchanged"),
-                ("wo", "worktree"),
-                ("wr", "write-tree")
-            ]
-        );
+        let expected = expect![[r#"
+            pg -> paginate
+            vs -> version
+        "#]];
+        expected.assert_eq(&serialize(&flags));
+        let expected = expect![[r#"
+            a -> add
+            am -> am
+            an -> annotate
+            ap -> apply
+            arm -> archimport
+            arv -> archive
+            b -> branch
+            bg -> bugreport
+            bi -> bisect
+            bl -> blame
+            bn -> bundle
+            c- -> cherry-pick
+            ca -> cat-file
+            cc -> credential-cache
+            ce -> clean
+            cg -> commit-graph
+            cha -> check-attr
+            chi -> check-ignore
+            chm -> check-mailmap
+            cho -> checkout-index
+            chr -> check-ref-format
+            ci -> citool
+            cl -> clone
+            cm -> commit
+            cn -> credential-netrc
+            co -> checkout
+            col -> column
+            con -> config
+            cou -> count-objects
+            crl -> credential
+            cs -> credential-store
+            ct -> commit-tree
+            cve -> cvsexportcommit
+            cvi -> cvsimport
+            cvs -> cvsserver
+            cy -> cherry
+            d -> diff
+            de -> describe
+            df -> diff-files
+            di -> diff-index
+            dit -> difftool
+            dt -> diff-tree
+            f -> fetch
+            fae -> fast-export
+            fai -> fast-import
+            fe -> fetch-pack
+            ff -> for-each-ref
+            fi -> filter-branch
+            fm -> fmt-merge-msg
+            fom -> format-patch
+            fp -> for-each-repo
+            fs -> fsck
+            gc -> gc
+            ge -> get-tar-commit-id
+            gk -> gitk
+            gr -> grep
+            gu -> gui
+            gw -> gitweb
+            ha -> hash-object
+            he -> help
+            ho -> hook
+            ht -> http-backend
+            i -> init
+            id -> index-pack
+            im -> imap-send
+            is -> instaweb
+            it -> interpret-trailers
+            lf -> lfs
+            lg -> log
+            lsf -> ls-files
+            lsr -> ls-remote
+            lst -> ls-tree
+            m -> merge
+            ma -> mktag
+            meb -> merge-base
+            mef -> merge-file
+            mei -> merge-index
+            meo -> merge-one-file
+            met -> merge-tree
+            mi -> mailinfo
+            mn -> maintenance
+            mr -> mktree
+            ms -> mailsplit
+            mt -> mergetool
+            mu -> multi-pack-index
+            mv -> mv
+            na -> name-rev
+            no -> notes
+            p -> push
+            p- -> prune-packed
+            p4 -> p4
+            pad -> pack-redundant
+            paf -> pack-refs
+            pe -> prune
+            pl -> pull
+            po -> pack-objects
+            pt -> patch-id
+            q -> quiltimport
+            ra -> range-diff
+            rb -> rebase
+            re -> revert
+            rea -> read-tree
+            ref -> reflog
+            rem -> remote
+            repa -> repack
+            repl -> replace
+            req -> request-pull
+            rer -> rerere
+            res -> restore
+            rl -> rev-list
+            rm -> rm
+            rp -> rev-parse
+            rs -> reset
+            s -> status
+            see -> send-email
+            sep -> send-pack
+            sh -> stash
+            showb -> show-branch
+            showi -> show-index
+            showr -> show-ref
+            shr -> shortlog
+            shw -> show
+            si -> sh-i18n
+            sp -> sparse-checkout
+            ss -> sh-setup
+            st -> stripspace
+            su -> submodule
+            sv -> svn
+            sw -> switch
+            sy -> symbolic-ref
+            t -> tag
+            uf -> unpack-file
+            ui -> update-index
+            uo -> unpack-objects
+            ur -> update-ref
+            us -> update-server-info
+            va -> var
+            vc -> verify-commit
+            vp -> verify-pack
+            vt -> verify-tag
+            wh -> whatchanged
+            wo -> worktree
+            wr -> write-tree
+        "#]];
+        expected.assert_eq(&serialize(&subs));
     }
 
     #[test]
@@ -1583,61 +1567,53 @@ FEEDBACK
             ..ConfigFile::default()
         };
         let (flags, subs) = go(&conf, String::from(GIT_SUBMODULE_HELP));
-        assert_eq!(
-            flags
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("al", "all"),
-                ("bh", "branch"),
-                ("ca", "cached"),
-                ("ch", "checkout"),
-                ("di", "dissociate"),
-                ("dp", "depth"),
-                ("fc", "force"),
-                ("fi", "files"),
-                ("ii", "init"),
-                ("j", "jobs"),
-                ("me", "merge"),
-                ("na", "name"),
-                ("no", "no-fetch"),
-                ("pr", "progress"),
-                ("q", "quiet"),
-                ("rb", "rebase"),
-                ("rf", "reference"),
-                ("rm", "remote"),
-                ("ru", "recursive"),
-                ("sum", "summary-limit")
-            ]
-        );
-        assert_eq!(
-            subs.iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            // TODO: These are all wrong
-            [
-                ("ab", "absolute"),
-                ("bh", "branch"),
-                ("cc", "cchheecckkoouutt"), // TODO: ?
-                ("co", "command"),
-                ("cu", "current"),
-                ("df", "default"),
-                ("dt", "detached"),
-                ("fr", "for"),
-                ("g", "git-submodule"),
-                ("is", "instead"),
-                ("ma", "many"),
-                ("pe", "performed"),
-                ("ro", "recorded"),
-                ("rs", "resolution"),
-                ("sp", "specified"),
-                ("sub", "submodules"),
-                ("sup", "superproject"),
-                ("t", "the"),
-                ("w", "when")
-            ]
-        );
+        let expected = expect![[r#"
+            al -> all
+            bh -> branch
+            ca -> cached
+            ch -> checkout
+            di -> dissociate
+            dp -> depth
+            fc -> force
+            fi -> files
+            ii -> init
+            j -> jobs
+            me -> merge
+            na -> name
+            no -> no-fetch
+            pr -> progress
+            q -> quiet
+            rb -> rebase
+            rf -> reference
+            rm -> remote
+            ru -> recursive
+            sum -> summary-limit
+        "#]];
+        expected.assert_eq(&serialize(&flags));
+        // TODO: These are all wrong
+        // TODO: cchheecckkoouutt ???
+        let expected = expect![[r#"
+            ab -> absolute
+            bh -> branch
+            cc -> cchheecckkoouutt
+            co -> command
+            cu -> current
+            df -> default
+            dt -> detached
+            fr -> for
+            g -> git-submodule
+            is -> instead
+            ma -> many
+            pe -> performed
+            ro -> recorded
+            rs -> resolution
+            sp -> specified
+            sub -> submodules
+            sup -> superproject
+            t -> the
+            w -> when
+        "#]];
+        expected.assert_eq(&serialize(&subs));
     }
 
     #[test]
@@ -1648,36 +1624,30 @@ FEEDBACK
             ..ConfigFile::default()
         };
         let (flags, subs) = go(&conf, String::from(GLAB_HELP));
-        assert_eq!(
-            flags
-                .iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [("hp", "help"), ("ve", "version")]
-        );
-        assert_eq!(
-            subs.iter()
-                .map(|(k, v)| (k.as_str(), v.as_str()))
-                .collect::<Vec<_>>(),
-            [
-                ("al", "alias"),
-                ("ap", "api"),
-                ("au", "auth"),
-                ("ch", "check-update"),
-                ("ci", "ci"),
-                ("cm", "completion"),
-                ("cn", "config"),
-                ("hp", "help"),
-                ("i", "issue"),
-                ("l", "label"),
-                ("m", "mr"),
-                ("rl", "release"),
-                ("rp", "repo"),
-                ("s", "ssh-key"),
-                ("u", "user"),
-                ("va", "variable")
-            ]
-        );
+        let expected = expect![[r#"
+            hp -> help
+            ve -> version
+        "#]];
+        expected.assert_eq(&serialize(&flags));
+        let expected = expect![[r#"
+            al -> alias
+            ap -> api
+            au -> auth
+            ch -> check-update
+            ci -> ci
+            cm -> completion
+            cn -> config
+            hp -> help
+            i -> issue
+            l -> label
+            m -> mr
+            rl -> release
+            rp -> repo
+            s -> ssh-key
+            u -> user
+            va -> variable
+        "#]];
+        expected.assert_eq(&serialize(&subs));
     }
 
     #[test]
