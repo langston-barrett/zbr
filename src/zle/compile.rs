@@ -31,25 +31,26 @@ pub(super) fn compile_recursive(
         m.insert(k, v);
     };
 
-    let short = &cmd.short;
     let mut prefix_str = prefix.join(" ");
     if !prefix.is_empty() {
         prefix_str.push(' ');
     }
-    // Don't make the recursive call if this isn't the case
-    debug_assert!(all || lbuf.starts_with(&prefix_str) || prefix_str.starts_with(lbuf));
-
-    let pre_short = format!("{prefix_str}{short}");
-    let pre_long = format!("{prefix_str}{long}");
-    debug_assert!(pre_short.len() <= pre_long.len());
     if !all && prefix_str.len() > lbuf.len() + 1 {
         return m;
     }
+
+    // Shouldn't have made the recursive call if this isn't the case
+    debug_assert!(all || lbuf.starts_with(&prefix_str) || prefix_str.starts_with(lbuf));
+    let short = &cmd.short;
+    let pre_short = format!("{prefix_str}{short}");
+    let pre_long = format!("{prefix_str}{long}");
+    debug_assert!(pre_short.len() <= pre_long.len());
+    let doesnt_start_with_prefix = !lbuf.starts_with(&pre_long);
     if !all
         && !pre_short.starts_with(lbuf)
         && !pre_long.starts_with(lbuf)
         && !lbuf.starts_with(&pre_short)
-        && !lbuf.starts_with(&pre_long)
+        && doesnt_start_with_prefix
     {
         // warn!("Irrelevant to {lbuf}: {pre_short} {pre_long}");
         return m;
@@ -68,7 +69,6 @@ pub(super) fn compile_recursive(
         }
     }
     prefix.push(long.to_string());
-    let doesnt_start_with_prefix = !lbuf.starts_with(&format!("{prefix_str}{long}"));
     for (sub_long, sub) in &cmd.subs.0 {
         let sub_short = &sub.short;
         debug!("binding sub: {sub_long}");
