@@ -32,6 +32,17 @@ mod tests {
     }
 
     #[test]
+    fn test_hint_git_commit_space() {
+        let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
+        let hints = hint(&conf, String::from("git commit "), 5);
+        let expected = expect![[r#"
+            git commit -a -> git commit --amend 
+            git commit -m -> git commit --message 
+        "#]];
+        expected.assert_eq(&serialize(&hints));
+    }
+
+    #[test]
     fn test_hint_git_s() {
         let conf = expand::ConfigFile::from_file("conf/conf.toml").unwrap();
         let hints = hint(&conf, String::from("git s"), 5);
