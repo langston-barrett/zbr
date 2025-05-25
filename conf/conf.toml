@@ -309,6 +309,10 @@ short = "in"
 [cmds.cargo.subs.install]
 short = "i"
 
+[cmds.cargo.subs.install.flags.--path]
+short = "p"
+squish = true
+
 [cmds.cargo.subs.locate-project]
 short = "la"
 

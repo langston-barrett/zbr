@@ -71,6 +71,10 @@ short = "cl"
 [subs.install]
 short = "i"
 
+[subs.install.flags.--path]
+short = "p"
+squish = true
+
 [subs.run]
 short = "r"
 
