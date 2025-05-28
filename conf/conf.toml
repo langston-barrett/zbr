@@ -2173,6 +2173,391 @@ short = "t"
 [cmds.mdbook.subs.watch]
 short = "w"
 
+[cmds.systemctl]
+short = "sys"
+
+[cmds.systemctl.flags.--all]
+short = "al"
+
+[cmds.systemctl.flags.--boot-loader-entry]
+short = "be"
+
+[cmds.systemctl.flags.--boot-loader-menu]
+short = "bm"
+
+[cmds.systemctl.flags.--check-inhibitors]
+short = "ch"
+
+[cmds.systemctl.flags.--drop-in]
+short = "do"
+
+[cmds.systemctl.flags.--dry-run]
+short = "dy"
+
+[cmds.systemctl.flags.--failed]
+short = "fa"
+
+[cmds.systemctl.flags.--firmware-setup]
+short = "fi"
+
+[cmds.systemctl.flags.--force]
+short = "fo"
+
+[cmds.systemctl.flags.--full]
+short = "fu"
+
+[cmds.systemctl.flags.--global]
+short = "gl"
+
+[cmds.systemctl.flags.--help]
+short = "hp"
+
+[cmds.systemctl.flags.--host]
+short = "ho"
+
+[cmds.systemctl.flags.--image]
+short = "ie"
+
+[cmds.systemctl.flags.--image-policy]
+short = "i-"
+
+[cmds.systemctl.flags.--job-mode]
+short = "j"
+
+[cmds.systemctl.flags.--kill-value]
+short = "kv"
+
+[cmds.systemctl.flags.--kill-whom]
+short = "kw"
+
+[cmds.systemctl.flags.--legend]
+short = "le"
+
+[cmds.systemctl.flags.--lines]
+short = "lie"
+
+[cmds.systemctl.flags.--machine]
+short = "mc"
+
+[cmds.systemctl.flags.--marked]
+short = "mr"
+
+[cmds.systemctl.flags.--mkdir]
+short = "mk"
+
+[cmds.systemctl.flags.--no-ask-password]
+short = "na"
+
+[cmds.systemctl.flags.--no-block]
+short = "nb"
+
+[cmds.systemctl.flags.--no-pager]
+short = "np"
+
+[cmds.systemctl.flags.--no-reload]
+short = "nr"
+
+[cmds.systemctl.flags.--no-wall]
+short = "nol"
+
+[cmds.systemctl.flags.--no-warn]
+short = "nor"
+
+[cmds.systemctl.flags.--now]
+short = "nw"
+
+[cmds.systemctl.flags.--output]
+short = "o"
+
+[cmds.systemctl.flags.--plain]
+short = "pl"
+
+[cmds.systemctl.flags.--preset-mode]
+short = "pm"
+
+[cmds.systemctl.flags.--property]
+short = "pro"
+
+[cmds.systemctl.flags.--quiet]
+short = "q"
+
+[cmds.systemctl.flags.--read-only]
+short = "ra"
+
+[cmds.systemctl.flags.--recursive]
+short = "rc"
+
+[cmds.systemctl.flags.--reverse]
+short = "rs"
+
+[cmds.systemctl.flags.--root]
+short = "ro"
+
+[cmds.systemctl.flags.--runtime]
+short = "ru"
+
+[cmds.systemctl.flags.--show-transaction]
+short = "shr"
+
+[cmds.systemctl.flags.--show-types]
+short = "shy"
+
+[cmds.systemctl.flags.--signal]
+short = "si"
+
+[cmds.systemctl.flags.--state]
+short = "stt"
+
+[cmds.systemctl.flags.--system]
+short = "sy"
+
+[cmds.systemctl.flags.--timestamp]
+short = "ti"
+
+[cmds.systemctl.flags.--type]
+short = "ty"
+
+[cmds.systemctl.flags.--user]
+short = "u"
+squish = true
+
+[cmds.systemctl.flags.--value]
+short = "va"
+
+[cmds.systemctl.flags.--version]
+short = "ve"
+
+[cmds.systemctl.flags.--wait]
+short = "wa"
+
+[cmds.systemctl.flags.--what]
+short = "wha"
+
+[cmds.systemctl.flags.--when]
+short = "whe"
+
+[cmds.systemctl.flags.--with-dependencies]
+short = "wi"
+
+[cmds.systemctl.subs.add-requires]
+short = "ar"
+
+[cmds.systemctl.subs.add-wants]
+short = "aw"
+
+[cmds.systemctl.subs.bind]
+short = "bi"
+
+[cmds.systemctl.subs.cancel]
+short = "cn"
+
+[cmds.systemctl.subs.cat]
+short = "ct"
+
+[cmds.systemctl.subs.clean]
+short = "cl"
+
+[cmds.systemctl.subs.daemon-reexec]
+short = "dae"
+
+[cmds.systemctl.subs.daemon-reload]
+short = "dal"
+
+[cmds.systemctl.subs.default]
+short = "de"
+
+[cmds.systemctl.subs.disable]
+short = "di"
+
+[cmds.systemctl.subs.edit]
+short = "ed"
+
+[cmds.systemctl.subs.emergency]
+short = "em"
+
+[cmds.systemctl.subs.enable]
+short = "en"
+
+[cmds.systemctl.subs.exit]
+short = "ex"
+
+[cmds.systemctl.subs.freeze]
+short = "fr"
+
+[cmds.systemctl.subs.get-default]
+short = "ge"
+
+[cmds.systemctl.subs.halt]
+short = "ha"
+
+[cmds.systemctl.subs.help]
+short = "hp"
+
+[cmds.systemctl.subs.hibernate]
+short = "hi"
+
+[cmds.systemctl.subs.hybrid-sleep]
+short = "hy"
+
+[cmds.systemctl.subs.import-environment]
+short = "ip"
+
+[cmds.systemctl.subs.is-active]
+short = "isa"
+
+[cmds.systemctl.subs.is-enabled]
+short = "ise"
+
+[cmds.systemctl.subs.is-failed]
+short = "isf"
+
+[cmds.systemctl.subs.is-system-running]
+short = "iss"
+
+[cmds.systemctl.subs.isolate]
+short = "io"
+
+[cmds.systemctl.subs.kexec]
+short = "ke"
+
+[cmds.systemctl.subs.kill]
+short = "kl"
+
+[cmds.systemctl.subs.link]
+short = "lik"
+
+[cmds.systemctl.subs.list-automounts]
+short = "lsa"
+
+[cmds.systemctl.subs.list-dependencies]
+short = "lsd"
+
+[cmds.systemctl.subs.list-jobs]
+short = "lsj"
+
+[cmds.systemctl.subs.list-machines]
+short = "lsm"
+
+[cmds.systemctl.subs.list-paths]
+short = "lsp"
+
+[cmds.systemctl.subs.list-sockets]
+short = "lss"
+
+[cmds.systemctl.subs.list-timers]
+short = "lst"
+
+[cmds.systemctl.subs.list-unit-files]
+short = "lsuf"
+
+[cmds.systemctl.subs.list-units]
+short = "lsu"
+
+[cmds.systemctl.subs.log-level]
+short = "lgl"
+
+[cmds.systemctl.subs.log-target]
+short = "lgt"
+
+[cmds.systemctl.subs.mask]
+short = "ms"
+
+[cmds.systemctl.subs.mount-image]
+short = "mo"
+
+[cmds.systemctl.subs.poweroff]
+short = "po"
+
+[cmds.systemctl.subs.preset]
+short = "pt"
+
+[cmds.systemctl.subs.preset-all]
+short = "pa"
+
+[cmds.systemctl.subs.reboot]
+short = "rb"
+
+[cmds.systemctl.subs.reenable]
+short = "re"
+
+[cmds.systemctl.subs.reload]
+short = "rd"
+
+[cmds.systemctl.subs.reload-or-restart]
+short = "r-"
+
+[cmds.systemctl.subs.rescue]
+short = "resc"
+
+[cmds.systemctl.subs.reset-failed]
+short = "rese"
+
+[cmds.systemctl.subs.restart]
+short = "rest"
+
+[cmds.systemctl.subs.revert]
+short = "rt"
+
+[cmds.systemctl.subs.service-log-level]
+short = "sl"
+
+[cmds.systemctl.subs.service-log-target]
+short = "st"
+
+[cmds.systemctl.subs.service-watchdogs]
+short = "sw"
+
+[cmds.systemctl.subs.set-default]
+short = "sed"
+
+[cmds.systemctl.subs.set-environment]
+short = "see"
+
+[cmds.systemctl.subs.set-property]
+short = "sep"
+
+[cmds.systemctl.subs.show]
+short = "shw"
+
+[cmds.systemctl.subs.show-environment]
+short = "se"
+
+[cmds.systemctl.subs.soft-reboot]
+short = "so"
+
+[cmds.systemctl.subs.start]
+short = "str"
+
+[cmds.systemctl.subs.status]
+short = "s"
+
+[cmds.systemctl.subs.stop]
+short = "sp"
+
+[cmds.systemctl.subs.suspend]
+short = "sd"
+
+[cmds.systemctl.subs.suspend-then-hibernate]
+short = "s-"
+
+[cmds.systemctl.subs.thaw]
+short = "th"
+
+[cmds.systemctl.subs.try-reload-or-restart]
+short = "tl"
+
+[cmds.systemctl.subs.try-restart]
+short = "ts"
+
+[cmds.systemctl.subs.unmask]
+short = "unm"
+
+[cmds.systemctl.subs.unset-environment]
+short = "uns"
+
+[cmds.systemctl.subs.whoami]
+short = "who"
+
 [cmds.task]
 short = "j"
 

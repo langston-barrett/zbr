@@ -164,10 +164,9 @@ mod tests {
             hint(&conf, String::from("echo foo && git shor"), 5).len(),
             2
         );
-        // TODO
         assert_eq!(
             hint(&conf, String::from("echo foo && git status && git shor"), 5).len(),
-            0
+            2
         );
     }
 

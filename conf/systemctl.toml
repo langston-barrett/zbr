@@ -1,0 +1,46 @@
+short = "sys"
+extract_flags = true
+extract_subs = true
+
+[flags.--user]
+short = "u"
+squish = true
+
+[subs.list-automounts]
+short = "lsa"
+
+[subs.list-dependencies]
+short = "lsd"
+
+[subs.list-unit-files]
+short = "lsuf"
+
+[subs.list-units]
+short = "lsu"
+
+[subs.list-jobs]
+short = "lsj"
+
+[subs.list-machines]
+short = "lsm"
+
+[subs.list-paths]
+short = "lsp"
+
+[subs.list-sockets]
+short = "lss"
+
+[subs.list-timers]
+short = "lst"
+
+[subs.log-level]
+short = "lgl"
+
+[subs.log-target]
+short = "lgt"
+
+[subs.status]
+short = "s"
+
+[subs.stop]
+short = "sp"

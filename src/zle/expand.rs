@@ -81,7 +81,7 @@ pub(super) fn clean_buf(mut lbuf: String) -> (String, String) {
     let mut prefix = String::new();
     for delim in [" || ", " && ", "; "] {
         debug!("Searching for {delim}");
-        if let Some(idx) = lbuf.find(delim) {
+        if let Some(idx) = lbuf.rfind(delim) {
             debug!("Found {delim} at {idx}");
             let after = idx + delim.len();
             let (pre, post) = lbuf.split_at(after);
@@ -138,5 +138,11 @@ mod tests {
     #[test]
     fn test_expand_git_commit_m() {
         test_expand("git commit -m", "git commit --message ");
+    }
+
+    // TODO: Squished flags before subcommands
+    #[test]
+    fn test_expand_sysus() {
+        // test_expand("sysus", "systemctl --user status");
     }
 }
