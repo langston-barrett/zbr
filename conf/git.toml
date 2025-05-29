@@ -171,6 +171,9 @@ short = "co"
 short = "b"
 squish = true
 
+[subs.cherry-pick]
+short = "cp"
+
 [subs.clone]
 short = "cl"
 

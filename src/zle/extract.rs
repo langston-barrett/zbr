@@ -1631,7 +1631,6 @@ See the systemctl(1) man page for details.";
             bi -> bisect
             bl -> blame
             bn -> bundle
-            c- -> cherry-pick
             ca -> cat-file
             cc -> credential-cache
             ce -> clean
@@ -1649,13 +1648,14 @@ See the systemctl(1) man page for details.";
             col -> column
             con -> config
             cou -> count-objects
+            cp -> cherry-pick
+            cr -> cherry
             crl -> credential
             cs -> credential-store
             ct -> commit-tree
             cve -> cvsexportcommit
             cvi -> cvsimport
             cvs -> cvsserver
-            cy -> cherry
             d -> diff
             de -> describe
             df -> diff-files
@@ -1910,7 +1910,7 @@ See the systemctl(1) man page for details.";
             sy -> system
             ti -> timestamp
             ty -> type
-            u -> user
+            us -> user
             va -> value
             ve -> version
             wa -> wait
