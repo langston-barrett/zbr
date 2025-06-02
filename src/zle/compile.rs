@@ -117,7 +117,7 @@ pub(super) fn compile(cmds: &Cmds, lbuf: &str, all: bool) -> BTreeMap<String, St
     let mut r = BTreeMap::new();
     for (long, cmd) in &cmds.0 {
         if lbuf.is_empty() || lbuf.starts_with(&cmd.short) || lbuf.starts_with(long) {
-            r.extend(compile_recursive(String::new(), cmd, long, lbuf, all))
+            r.extend(compile_recursive(String::new(), cmd, long, lbuf, all));
         }
     }
     r

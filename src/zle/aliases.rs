@@ -6,7 +6,7 @@ use super::expand;
 // TODO: handle subcommands properly
 
 fn make_case(prefix: &str, compiled: &BTreeMap<&str, &str>) {
-    println!("function {}() {{", prefix);
+    println!("function {prefix}() {{");
     println!("  case $* in");
     for (short, long) in compiled {
         let words = short.split_ascii_whitespace().collect::<Vec<_>>();
@@ -40,6 +40,6 @@ pub(super) fn go(conf: expand::ConfigFile) {
             }
         }
         make_case(&cmd_long, &multi_word);
-        println!("function {}() {{ {cmd_long} \"$@\"; }}", cmd.short)
+        println!("function {}() {{ {cmd_long} \"$@\"; }}", cmd.short);
     }
 }

@@ -5,10 +5,6 @@ on:
     branches:
     - main
 
-defaults:
-  run:
-    shell: bash
-
 concurrency:
   # Only run one of these at a time because they update the global pages. Don't
   # cancel existing runs.
@@ -17,38 +13,8 @@ concurrency:
 
 jobs:
   docs:
-    runs-on: ubuntu-22.04
-    name: docs
+    uses: langston-barrett/gha/.github/workflows/mdbook-pages.yml@a3ebfb9810611b19315959d34761a56279364347
     permissions:
       contents: read
-      pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Setup mdBook
-      uses: peaceiris/actions-mdbook@v2
-      with:
-        mdbook-version: '0.4.50'
-
-    - name: Build docs
-      working-directory: doc
-      run: mdbook build
-
-    - name: Upload docs artifact to GitHub Pages
-      uses: actions/upload-pages-artifact@v3
-      if: github.ref == 'refs/heads/main' &&
-          github.event.pull_request.head.repo.fork == false &&
-          github.repository_owner == 'langston-barrett'
-      with:
-        path: doc/book/
-
-    - name: Deploy docs to GitHub Pages
-      uses: actions/deploy-pages@v4
-      if: github.ref == 'refs/heads/main' &&
-          github.event.pull_request.head.repo.fork == false &&
-          github.repository_owner == 'langston-barrett'
-      id: deployment
+      pages: write

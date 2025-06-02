@@ -53,10 +53,9 @@ pub(super) fn shorten_unique_prefixes(
                     let next_char = sim.chars().nth(saved.len()).unwrap();
                     saved.push(next_char);
                     continue 'outer;
-                } else {
-                    debug_assert!(new.chars().all(|c| sim.contains(c)));
-                    tentative.push((sim.to_string(), new));
                 }
+                debug_assert!(new.chars().all(|c| sim.contains(c)));
+                tentative.push(((*sim).to_owned(), new));
             }
             debug_assert_eq!(tentative.len(), similar.len());
             for (_, new) in &tentative {
@@ -76,7 +75,7 @@ pub(super) fn unique_prefixes(
 ) -> HashMap<String, String> {
     // debug_assert!(strings.len() == HashSet::<&String>::from_iter(strings).len());
     let mut result = HashMap::with_capacity(strings.len());
-    for string in strings.iter() {
+    for string in strings {
         let mut pfx = String::new();
         for c in string.chars() {
             pfx.push(c);
@@ -102,7 +101,7 @@ fn is_vowel(c: char) -> bool {
 fn remove_vowels(strings: &[String]) -> HashMap<&str, String> {
     let mut result = HashMap::with_capacity(strings.len());
     let mut seen = HashSet::with_capacity(strings.len());
-    for string in strings.iter() {
+    for string in strings {
         if string.is_empty() {
             continue;
         }

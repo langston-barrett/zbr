@@ -37,12 +37,12 @@ pub fn go(cmd: Command) -> Result<(), ConfigFileError> {
     match cmd {
         Command::Aliases { conf } => {
             let conf = expand::ConfigFile::from_file(conf)?;
-            aliases::go(conf)
+            aliases::go(conf);
         }
         Command::Expand { conf, lbuf, rbuf } => {
             let conf = expand::ConfigFile::from_file(conf)?;
             if let Some(result) = expand::expand(conf, lbuf, rbuf) {
-                println!("{}", result);
+                println!("{result}");
                 exit(0);
             }
             exit(1)
@@ -58,7 +58,7 @@ pub fn go(cmd: Command) -> Result<(), ConfigFileError> {
             println!(
                 "{}",
                 include_str!("init.zsh").replace("${ZBR_CONF}", &conf.to_string_lossy())
-            )
+            );
         }
     }
     Ok(())

@@ -5,7 +5,7 @@ use tracing_subscriber::fmt::format::FmtSpan;
 
 mod build;
 mod cli;
-mod zle;
+pub mod zle;
 
 use cli::Cli;
 
