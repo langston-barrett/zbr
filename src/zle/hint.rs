@@ -23,9 +23,9 @@ mod tests {
     fn serialize(v: &[(String, String)]) -> String {
         let mut s = String::with_capacity(v.len());
         for (k, v) in v {
-            s.push_str(&k);
+            s.push_str(k);
             s.push_str(" -> ");
-            s.push_str(&v);
+            s.push_str(v);
             s.push('\n');
         }
         s

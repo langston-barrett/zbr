@@ -113,7 +113,7 @@ fn deconflict(
     let mut denylist = HashSet::<&str>::with_capacity(conf.flags.len() + deny.len());
     denylist.extend(deny.iter().map(String::as_str));
 
-    for flag in flags.iter() {
+    for flag in flags {
         if let Some(flag_conf) = conf.flags.get(flag) {
             let short = &flag_conf.short;
             debug_assert!(!result.contains_key(flag));
@@ -128,7 +128,7 @@ fn deconflict(
     debug_assert!(rest.len() == HashSet::<&String>::from_iter(rest.iter()).len());
 
     let mut rest_subs = Vec::with_capacity(total_len - conf.flags.len());
-    for sub in subs.iter() {
+    for sub in subs {
         if let Some(sub_conf) = conf.subs.get(sub) {
             if let Some(short) = &sub_conf.short {
                 debug_assert!(!result.contains_key(sub));
@@ -395,7 +395,7 @@ pub(super) fn go(conf: Config) {
             let gen_conf = super::expand::ConfigFile {
                 cmds: Cmds(BTreeMap::from([(conf.cmd, extracted)])),
             };
-            println!("{}", toml::to_string(&gen_conf).unwrap())
+            println!("{}", toml::to_string(&gen_conf).unwrap());
         }
     }
 }
@@ -1366,9 +1366,9 @@ See the systemctl(1) man page for details.";
     fn serialize(v: &[(String, String)]) -> String {
         let mut s = String::with_capacity(v.len());
         for (k, v) in v {
-            s.push_str(&k);
+            s.push_str(k);
             s.push_str(" -> ");
-            s.push_str(&v);
+            s.push_str(v);
             s.push('\n');
         }
         s
