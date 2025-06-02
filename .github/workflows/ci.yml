@@ -5,8 +5,10 @@ on:
     - main
   pull_request:
 
+permissions: {}
+
 jobs:
   CI:
-    uses: langston-barrett/gha/.github/workflows/rust-ci.yml@a3ebfb9810611b19315959d34761a56279364347
+    uses: langston-barrett/gha/.github/workflows/rust-ci.yml@8453c38f50561612c0baddb16d1438950c4d7473
     with:
       os: ubuntu-latest
