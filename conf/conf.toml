@@ -1586,10 +1586,21 @@ short = "d"
 short = "l"
 
 [cmds.git.subs.stash.subs.pop]
-short = "po"
+short = "o"
 
 [cmds.git.subs.stash.subs.push]
-short = "pu"
+short = "u"
+
+[cmds.git.subs.stash.subs.push.flags.--include-untracked]
+short = "u"
+
+[cmds.git.subs.stash.subs.push.flags.--message]
+short = "m"
+squish = true
+
+[cmds.git.subs.stash.subs.push.flags.--patch]
+short = "p"
+squish = true
 
 [cmds.git.subs.stash.subs.show]
 short = "sh"

@@ -265,6 +265,23 @@ exact_subs = [
   "store",
 ]
 
+[subs.stash.subs.pop]
+short = "o"
+
+[subs.stash.subs.push]
+short = "u"
+
+[subs.stash.subs.push.flags.--include-untracked]
+short = "u"
+
+[subs.stash.subs.push.flags.--message]
+short = "m"
+squish = true
+
+[subs.stash.subs.push.flags.--patch]
+short = "p"
+squish = true
+
 [subs.status]
 short = "s"
 
