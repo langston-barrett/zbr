@@ -421,10 +421,10 @@ short = "l-"
 short = "ts"
 
 [cmds.docker.flags.--tlscacert]
-short = "tla"
+short = "ta"
 
 [cmds.docker.flags.--tlscert]
-short = "tle"
+short = "te"
 
 [cmds.docker.flags.--tlskey]
 short = "tk"
@@ -442,7 +442,7 @@ short = "ai"
 short = "at"
 
 [cmds.docker.subs.build]
-short = "bd"
+short = "b"
 
 [cmds.docker.subs.builder]
 short = "be"
@@ -727,7 +727,7 @@ short = "r"
 short = "pa"
 
 [cmds.docker.subs.plugin]
-short = "pl"
+short = "pu"
 
 [cmds.docker.subs.plugin.subs.create]
 short = "c"
@@ -766,10 +766,10 @@ short = "po"
 short = "ps"
 
 [cmds.docker.subs.pull]
-short = "pul"
+short = "pl"
 
 [cmds.docker.subs.push]
-short = "pus"
+short = "p"
 
 [cmds.docker.subs.rename]
 short = "rn"
@@ -784,7 +784,7 @@ short = "rm"
 short = "ri"
 
 [cmds.docker.subs.run]
-short = "ru"
+short = "r"
 
 [cmds.docker.subs.save]
 short = "sa"
@@ -832,7 +832,7 @@ short = "i"
 short = "p"
 
 [cmds.docker.subs.tag]
-short = "ta"
+short = "t"
 
 [cmds.docker.subs.top]
 short = "to"
@@ -1458,6 +1458,14 @@ short = "p-"
 
 [cmds.git.subs.pull]
 short = "pl"
+
+[cmds.git.subs.pull.flags.--autostash]
+short = "a"
+squish = true
+
+[cmds.git.subs.pull.flags.--rebase]
+short = "r"
+squish = true
 
 [cmds.git.subs.push]
 short = "p"

@@ -217,6 +217,14 @@ short = "m"
 [subs.pull]
 short = "pl"
 
+[subs.pull.flags.--autostash]
+short = "a"
+squish = true
+
+[subs.pull.flags.--rebase]
+short = "r"
+squish = true
+
 [subs.push]
 short = "p"
 
