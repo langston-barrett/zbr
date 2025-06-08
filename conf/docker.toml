@@ -4,6 +4,9 @@ extract_subs = true
 extract_flags = true
 flags = {}
 
+[subs.build]
+short = "b"
+
 [subs.config]
 extract_subs = true
 
@@ -25,8 +28,17 @@ extract_subs = true
 [subs.node]
 extract_subs = true
 
+[subs.push]
+short = "p"
+
 [subs.plugin]
 extract_subs = true
+
+[subs.pull]
+short = "pl"
+
+[subs.run]
+short = "r"
 
 [subs.secret]
 extract_subs = true
@@ -42,6 +54,9 @@ extract_subs = true
 
 [subs.system]
 extract_subs = true
+
+[subs.tag]
+short = "t"
 
 [subs.trust]
 extract_subs = true
