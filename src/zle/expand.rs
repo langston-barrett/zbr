@@ -73,8 +73,23 @@ fn expand_pre(conf: ConfigFile, lbuf: String) -> Option<String> {
             None => None,
         }
     } else {
+        let mut shorter: Option<&str> = None;
+        for (short, long) in &compiled {
+            if Some(lbuf.as_str()) == long.strip_suffix(' ')
+                && short.len() < shorter.map_or(usize::MAX, |s| s.len())
+            {
+                shorter = Some(short);
+            }
+        }
+        if let Some(short) = shorter {
+            notify(format!("hint: try {short}"));
+        }
         None
     }
+}
+
+fn notify(s: String) {
+    drop(std::process::Command::new("notify").arg(s).spawn());
 }
 
 pub(super) fn clean_buf(mut lbuf: String) -> (String, String) {
