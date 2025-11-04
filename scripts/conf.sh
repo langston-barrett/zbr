@@ -8,7 +8,7 @@ go() {
   cargo run -qr -- -vvvv extract $1 conf/$1.toml > conf/$1.gen.toml || exit 1
   cat conf/$1.gen.toml >> conf/conf.gen.toml
 }
-for tool in cabal cargo docker gh git glab mdbook task tmux; do
+for tool in apt-get cabal cargo docker gh git glab mdbook task tmux; do
   go "${tool}"
 done
 if [[ $OSTYPE != darwin* ]]; then

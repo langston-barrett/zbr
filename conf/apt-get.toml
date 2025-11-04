@@ -1,0 +1,30 @@
+short = "ag"
+extra_subs = [
+  "autoremove",
+  "install",
+  "reinstall",
+  "remove",
+  "update",
+  "upgrade",
+]
+extract_subs = false
+extract_flags = false
+flags = {}
+
+[subs.autoremove]
+short = "a"
+
+[subs.install]
+short = "i"
+
+[subs.reinstall]
+short = "ri"
+
+[subs.remove]
+short = "r"
+
+[subs.update]
+short = "ud"
+
+[subs.upgrade]
+short = "ug"
