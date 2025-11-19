@@ -427,7 +427,7 @@ short = "cf"
 short = "ct"
 
 [cmds.docker.flags.--debug]
-short = "de"
+short = "dg"
 
 [cmds.docker.flags.--help]
 short = "he"
@@ -456,8 +456,11 @@ short = "tv"
 [cmds.docker.flags.--version]
 short = "vn"
 
+[cmds.docker.subs.ai]
+short = "ai"
+
 [cmds.docker.subs.attach]
-short = "a"
+short = "at"
 
 [cmds.docker.subs.build]
 short = "b"
@@ -467,6 +470,9 @@ short = "be"
 
 [cmds.docker.subs.buildx]
 short = "bx"
+
+[cmds.docker.subs.cloud]
+short = "cl"
 
 [cmds.docker.subs.commit]
 short = "com"
@@ -591,6 +597,15 @@ short = "cr"
 [cmds.docker.subs.daemon]
 short = "da"
 
+[cmds.docker.subs.debug]
+short = "dg"
+
+[cmds.docker.subs.desktop]
+short = "ds"
+
+[cmds.docker.subs.dev]
+short = "dv"
+
 [cmds.docker.subs.diff]
 short = "di"
 
@@ -602,6 +617,9 @@ short = "ee"
 
 [cmds.docker.subs.export]
 short = "ep"
+
+[cmds.docker.subs.extension]
+short = "et"
 
 [cmds.docker.subs.history]
 short = "hi"
@@ -654,6 +672,9 @@ short = "ip"
 [cmds.docker.subs.info]
 short = "inf"
 
+[cmds.docker.subs.init]
+short = "ini"
+
 [cmds.docker.subs.inspect]
 short = "ins"
 
@@ -673,7 +694,7 @@ short = "lo"
 short = "ls"
 
 [cmds.docker.subs.manifest]
-short = "m"
+short = "ma"
 
 [cmds.docker.subs.manifest.subs.annotate]
 short = "a"
@@ -695,6 +716,9 @@ short = "p"
 
 [cmds.docker.subs.manifest.subs.rm]
 short = "r"
+
+[cmds.docker.subs.model]
+short = "mo"
 
 [cmds.docker.subs.network]
 short = "n"
@@ -785,6 +809,12 @@ short = "r"
 
 [cmds.docker.subs.save]
 short = "sa"
+
+[cmds.docker.subs.sbom]
+short = "sb"
+
+[cmds.docker.subs.scout]
+short = "sc"
 
 [cmds.docker.subs.search]
 short = "se"
@@ -885,8 +915,11 @@ short = "h"
 [cmds.gh.flags.--version]
 short = "ve"
 
+[cmds.gh.subs.accessibility]
+short = "acc"
+
 [cmds.gh.subs.actions]
-short = "ac"
+short = "act"
 
 [cmds.gh.subs.alias]
 short = "al"
@@ -1495,6 +1528,36 @@ short = "rem"
 [cmds.git.subs.remote.flags.--verbose]
 short = "v"
 squish = true
+
+[cmds.git.subs.remote.subs.add]
+short = "a"
+
+[cmds.git.subs.remote.subs.get-url]
+short = "g"
+
+[cmds.git.subs.remote.subs.prune]
+short = "p"
+
+[cmds.git.subs.remote.subs.remove]
+short = "rm"
+
+[cmds.git.subs.remote.subs.rename]
+short = "rn"
+
+[cmds.git.subs.remote.subs.set-branches]
+short = "seb"
+
+[cmds.git.subs.remote.subs.set-head]
+short = "seh"
+
+[cmds.git.subs.remote.subs.set-url]
+short = "seu"
+
+[cmds.git.subs.remote.subs.show]
+short = "sh"
+
+[cmds.git.subs.remote.subs.update]
+short = "u"
 
 [cmds.git.subs.repack]
 short = "repa"

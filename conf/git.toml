@@ -247,6 +247,21 @@ squish = true
 short = "i"
 squish = true
 
+[subs.remote]
+short = "rem"
+exact_subs = [
+  "add",
+  "get-url",
+  "prune",
+  "remove",
+  "rename",
+  "set-branches",
+  "set-head",
+  "set-url",
+  "show",
+  "update",
+]
+
 [subs.remote.flags.--verbose]
 short = "v"
 squish = true
