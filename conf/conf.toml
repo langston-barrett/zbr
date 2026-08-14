@@ -421,7 +421,7 @@ short = "y"
 short = "dk"
 
 [cmds.docker.flags.--config]
-short = "cf"
+short = "cg"
 
 [cmds.docker.flags.--context]
 short = "ct"
@@ -471,6 +471,9 @@ short = "be"
 [cmds.docker.subs.buildx]
 short = "bx"
 
+[cmds.docker.subs.checkpoint]
+short = "ch"
+
 [cmds.docker.subs.cloud]
 short = "cl"
 
@@ -479,6 +482,21 @@ short = "com"
 
 [cmds.docker.subs.compose]
 short = "cop"
+
+[cmds.docker.subs.config]
+short = "cg"
+
+[cmds.docker.subs.config.subs.create]
+short = "c"
+
+[cmds.docker.subs.config.subs.inspect]
+short = "i"
+
+[cmds.docker.subs.config.subs.ls]
+short = "l"
+
+[cmds.docker.subs.config.subs.rm]
+short = "r"
 
 [cmds.docker.subs.container]
 short = "ca"
@@ -721,7 +739,7 @@ short = "r"
 short = "mo"
 
 [cmds.docker.subs.network]
-short = "n"
+short = "ne"
 
 [cmds.docker.subs.network.subs.connect]
 short = "co"
@@ -743,6 +761,30 @@ short = "p"
 
 [cmds.docker.subs.network.subs.rm]
 short = "r"
+
+[cmds.docker.subs.node]
+short = "no"
+
+[cmds.docker.subs.node.subs.demote]
+short = "d"
+
+[cmds.docker.subs.node.subs.inspect]
+short = "i"
+
+[cmds.docker.subs.node.subs.ls]
+short = "l"
+
+[cmds.docker.subs.node.subs.promote]
+short = "pr"
+
+[cmds.docker.subs.node.subs.ps]
+short = "ps"
+
+[cmds.docker.subs.node.subs.rm]
+short = "r"
+
+[cmds.docker.subs.node.subs.update]
+short = "u"
 
 [cmds.docker.subs.pause]
 short = "pa"
@@ -817,13 +859,79 @@ short = "sb"
 short = "sc"
 
 [cmds.docker.subs.search]
-short = "se"
+short = "sea"
+
+[cmds.docker.subs.secret]
+short = "sec"
+
+[cmds.docker.subs.secret.subs.create]
+short = "c"
+
+[cmds.docker.subs.secret.subs.inspect]
+short = "i"
+
+[cmds.docker.subs.secret.subs.ls]
+short = "l"
+
+[cmds.docker.subs.secret.subs.rm]
+short = "r"
+
+[cmds.docker.subs.service]
+short = "ser"
+
+[cmds.docker.subs.service.subs.create]
+short = "c"
+
+[cmds.docker.subs.service.subs.inspect]
+short = "i"
+
+[cmds.docker.subs.service.subs.logs]
+short = "lo"
+
+[cmds.docker.subs.service.subs.ls]
+short = "ls"
+
+[cmds.docker.subs.service.subs.ps]
+short = "p"
+
+[cmds.docker.subs.service.subs.rm]
+short = "rm"
+
+[cmds.docker.subs.service.subs.rollback]
+short = "ro"
+
+[cmds.docker.subs.service.subs.scale]
+short = "s"
+
+[cmds.docker.subs.service.subs.update]
+short = "u"
+
+[cmds.docker.subs.stack]
+short = "stc"
+
+[cmds.docker.subs.stack.subs.config]
+short = "c"
+
+[cmds.docker.subs.stack.subs.deploy]
+short = "d"
+
+[cmds.docker.subs.stack.subs.ls]
+short = "l"
+
+[cmds.docker.subs.stack.subs.ps]
+short = "p"
+
+[cmds.docker.subs.stack.subs.rm]
+short = "r"
+
+[cmds.docker.subs.stack.subs.services]
+short = "s"
 
 [cmds.docker.subs.start]
-short = "sr"
+short = "str"
 
 [cmds.docker.subs.stats]
-short = "st"
+short = "stt"
 
 [cmds.docker.subs.stop]
 short = "so"
@@ -831,11 +939,29 @@ short = "so"
 [cmds.docker.subs.swarm]
 short = "sw"
 
+[cmds.docker.subs.swarm.subs.ca]
+short = "c"
+
 [cmds.docker.subs.swarm.subs.init]
 short = "i"
 
 [cmds.docker.subs.swarm.subs.join]
-short = "j"
+short = "jn"
+
+[cmds.docker.subs.swarm.subs.join-token]
+short = "j-"
+
+[cmds.docker.subs.swarm.subs.leave]
+short = "l"
+
+[cmds.docker.subs.swarm.subs.unlock]
+short = "uk"
+
+[cmds.docker.subs.swarm.subs.unlock-key]
+short = "u-"
+
+[cmds.docker.subs.swarm.subs.update]
+short = "up"
 
 [cmds.docker.subs.system]
 short = "sy"
@@ -903,6 +1029,9 @@ short = "p"
 [cmds.docker.subs.volume.subs.rm]
 short = "r"
 
+[cmds.docker.subs.volume.subs.update]
+short = "u"
+
 [cmds.docker.subs.wait]
 short = "w"
 
@@ -932,6 +1061,9 @@ short = "at"
 
 [cmds.gh.subs.auth]
 short = "au"
+
+[cmds.gh.subs.aw]
+short = "aw"
 
 [cmds.gh.subs.browse]
 short = "b"
@@ -2189,6 +2321,225 @@ short = "t"
 [cmds.mdbook.subs.watch]
 short = "w"
 
+[cmds.nix]
+short = "n"
+
+[cmds.nix.subs.build]
+short = "b"
+
+[cmds.nix.subs.bundle]
+short = "bu"
+
+[cmds.nix.subs.config]
+short = "cg"
+
+[cmds.nix.subs."config check"]
+short = "cc"
+
+[cmds.nix.subs."config show"]
+short = "cs"
+
+[cmds.nix.subs.copy]
+short = "cp"
+
+[cmds.nix.subs.daemon]
+short = "da"
+
+[cmds.nix.subs.derivation]
+short = "dn"
+
+[cmds.nix.subs."derivation add"]
+short = "dea"
+
+[cmds.nix.subs."derivation show"]
+short = "des"
+
+[cmds.nix.subs.develop]
+short = "dv"
+
+[cmds.nix.subs.edit]
+short = "ed"
+
+[cmds.nix.subs.env]
+short = "env"
+
+[cmds.nix.subs."env shell"]
+short = "e "
+
+[cmds.nix.subs.eval]
+short = "ev"
+
+[cmds.nix.subs.flake]
+short = "fk"
+
+[cmds.nix.subs.flake.subs.archive]
+short = "a"
+
+[cmds.nix.subs.flake.subs.check]
+short = "ch"
+
+[cmds.nix.subs.flake.subs.clone]
+short = "cl"
+
+[cmds.nix.subs.flake.subs.info]
+short = "if"
+
+[cmds.nix.subs.flake.subs.init]
+short = "ii"
+
+[cmds.nix.subs.flake.subs.lock]
+short = "l"
+
+[cmds.nix.subs.flake.subs.metadata]
+short = "m"
+
+[cmds.nix.subs.flake.subs.new]
+short = "n"
+
+[cmds.nix.subs.flake.subs.prefetch]
+short = "ph"
+
+[cmds.nix.subs.flake.subs.prefetch-inputs]
+short = "p-"
+
+[cmds.nix.subs.flake.subs.show]
+short = "s"
+
+[cmds.nix.subs.flake.subs.update]
+short = "u"
+
+[cmds.nix.subs.fmt]
+short = "fm"
+
+[cmds.nix.subs.formatter]
+short = "fr"
+
+[cmds.nix.subs."formatter build"]
+short = "fob"
+
+[cmds.nix.subs."formatter run"]
+short = "for"
+
+[cmds.nix.subs.hash]
+short = "hh"
+
+[cmds.nix.subs."hash convert"]
+short = "hc"
+
+[cmds.nix.subs."hash file"]
+short = "hf"
+
+[cmds.nix.subs."hash path"]
+short = "hp"
+
+[cmds.nix.subs."hash to-base16"]
+short = "h1"
+
+[cmds.nix.subs."hash to-base32"]
+short = "h3"
+
+[cmds.nix.subs."hash to-base64"]
+short = "h6"
+
+[cmds.nix.subs."hash to-sri"]
+short = "hs"
+
+[cmds.nix.subs.help]
+short = "hep"
+
+[cmds.nix.subs.help-stores]
+short = "h-"
+
+[cmds.nix.subs.key]
+short = "ky"
+
+[cmds.nix.subs."key convert-secret-to-public"]
+short = "kc"
+
+[cmds.nix.subs."key generate-secret"]
+short = "kg"
+
+[cmds.nix.subs.log]
+short = "l"
+
+[cmds.nix.subs.nar]
+short = "nr"
+
+[cmds.nix.subs."nar cat"]
+short = "nc"
+
+[cmds.nix.subs."nar dump-path"]
+short = "nd"
+
+[cmds.nix.subs."nar ls"]
+short = "nl"
+
+[cmds.nix.subs."nar pack"]
+short = "np"
+
+[cmds.nix.subs.path-info]
+short = "pi"
+
+[cmds.nix.subs.print-dev-env]
+short = "pde"
+
+[cmds.nix.subs.profile]
+short = "p"
+
+[cmds.nix.subs.profile.subs.add]
+short = "a"
+
+[cmds.nix.subs.profile.subs.diff-closures]
+short = "d"
+
+[cmds.nix.subs.profile.subs.history]
+short = "h"
+
+[cmds.nix.subs.profile.subs.install]
+short = "i"
+
+[cmds.nix.subs.profile.subs.list]
+short = "l"
+
+[cmds.nix.subs.profile.subs.remove]
+short = "rm"
+
+[cmds.nix.subs.profile.subs.rollback]
+short = "r"
+
+[cmds.nix.subs.profile.subs.upgrade]
+short = "u"
+
+[cmds.nix.subs.profile.subs.wipe-history]
+short = "w"
+
+[cmds.nix.subs.realisation]
+short = "rn"
+
+[cmds.nix.subs."realisation info"]
+short = "r "
+
+[cmds.nix.subs.registry]
+short = "rg"
+
+[cmds.nix.subs.repl]
+short = "rp"
+
+[cmds.nix.subs.run]
+short = "r"
+
+[cmds.nix.subs.search]
+short = "se"
+
+[cmds.nix.subs.store]
+short = "st"
+
+[cmds.nix.subs.upgrade-nix]
+short = "u"
+
+[cmds.nix.subs.why-depends]
+short = "w"
+
 [cmds.task]
 short = "j"
 
@@ -2689,388 +3040,4 @@ short = "ul"
 
 [cmds.tmux.subs.wait-for]
 short = "w"
-
-[cmds.systemctl]
-short = "sys"
-
-[cmds.systemctl.flags.--all]
-short = "al"
-
-[cmds.systemctl.flags.--boot-loader-entry]
-short = "be"
-
-[cmds.systemctl.flags.--boot-loader-menu]
-short = "bm"
-
-[cmds.systemctl.flags.--check-inhibitors]
-short = "ch"
-
-[cmds.systemctl.flags.--drop-in]
-short = "do"
-
-[cmds.systemctl.flags.--dry-run]
-short = "dy"
-
-[cmds.systemctl.flags.--failed]
-short = "fa"
-
-[cmds.systemctl.flags.--firmware-setup]
-short = "fi"
-
-[cmds.systemctl.flags.--force]
-short = "fo"
-
-[cmds.systemctl.flags.--full]
-short = "fu"
-
-[cmds.systemctl.flags.--global]
-short = "gl"
-
-[cmds.systemctl.flags.--help]
-short = "hp"
-
-[cmds.systemctl.flags.--host]
-short = "ho"
-
-[cmds.systemctl.flags.--image]
-short = "ie"
-
-[cmds.systemctl.flags.--image-policy]
-short = "i-"
-
-[cmds.systemctl.flags.--job-mode]
-short = "j"
-
-[cmds.systemctl.flags.--kill-value]
-short = "kv"
-
-[cmds.systemctl.flags.--kill-whom]
-short = "kw"
-
-[cmds.systemctl.flags.--legend]
-short = "le"
-
-[cmds.systemctl.flags.--lines]
-short = "lie"
-
-[cmds.systemctl.flags.--machine]
-short = "mc"
-
-[cmds.systemctl.flags.--marked]
-short = "mr"
-
-[cmds.systemctl.flags.--mkdir]
-short = "mk"
-
-[cmds.systemctl.flags.--no-ask-password]
-short = "na"
-
-[cmds.systemctl.flags.--no-block]
-short = "nb"
-
-[cmds.systemctl.flags.--no-pager]
-short = "np"
-
-[cmds.systemctl.flags.--no-reload]
-short = "nr"
-
-[cmds.systemctl.flags.--no-wall]
-short = "nol"
-
-[cmds.systemctl.flags.--no-warn]
-short = "nor"
-
-[cmds.systemctl.flags.--now]
-short = "nw"
-
-[cmds.systemctl.flags.--output]
-short = "o"
-
-[cmds.systemctl.flags.--plain]
-short = "pl"
-
-[cmds.systemctl.flags.--preset-mode]
-short = "pm"
-
-[cmds.systemctl.flags.--property]
-short = "pro"
-
-[cmds.systemctl.flags.--quiet]
-short = "q"
-
-[cmds.systemctl.flags.--read-only]
-short = "ra"
-
-[cmds.systemctl.flags.--recursive]
-short = "rc"
-
-[cmds.systemctl.flags.--reverse]
-short = "rs"
-
-[cmds.systemctl.flags.--root]
-short = "ro"
-
-[cmds.systemctl.flags.--runtime]
-short = "ru"
-
-[cmds.systemctl.flags.--show-transaction]
-short = "shr"
-
-[cmds.systemctl.flags.--show-types]
-short = "shy"
-
-[cmds.systemctl.flags.--signal]
-short = "si"
-
-[cmds.systemctl.flags.--state]
-short = "stt"
-
-[cmds.systemctl.flags.--system]
-short = "sy"
-
-[cmds.systemctl.flags.--timestamp]
-short = "ti"
-
-[cmds.systemctl.flags.--type]
-short = "ty"
-
-[cmds.systemctl.flags.--user]
-short = "us"
-
-[cmds.systemctl.flags.--value]
-short = "va"
-
-[cmds.systemctl.flags.--version]
-short = "ve"
-
-[cmds.systemctl.flags.--wait]
-short = "wa"
-
-[cmds.systemctl.flags.--what]
-short = "wha"
-
-[cmds.systemctl.flags.--when]
-short = "whe"
-
-[cmds.systemctl.flags.--with-dependencies]
-short = "wi"
-
-[cmds.systemctl.subs.add-requires]
-short = "ar"
-
-[cmds.systemctl.subs.add-wants]
-short = "aw"
-
-[cmds.systemctl.subs.bind]
-short = "bi"
-
-[cmds.systemctl.subs.cancel]
-short = "cn"
-
-[cmds.systemctl.subs.cat]
-short = "ct"
-
-[cmds.systemctl.subs.clean]
-short = "cl"
-
-[cmds.systemctl.subs.daemon-reexec]
-short = "dae"
-
-[cmds.systemctl.subs.daemon-reload]
-short = "dal"
-
-[cmds.systemctl.subs.default]
-short = "de"
-
-[cmds.systemctl.subs.disable]
-short = "di"
-
-[cmds.systemctl.subs.edit]
-short = "ed"
-
-[cmds.systemctl.subs.emergency]
-short = "em"
-
-[cmds.systemctl.subs.enable]
-short = "en"
-
-[cmds.systemctl.subs.exit]
-short = "ex"
-
-[cmds.systemctl.subs.freeze]
-short = "fr"
-
-[cmds.systemctl.subs.get-default]
-short = "ge"
-
-[cmds.systemctl.subs.halt]
-short = "ha"
-
-[cmds.systemctl.subs.help]
-short = "hp"
-
-[cmds.systemctl.subs.hibernate]
-short = "hi"
-
-[cmds.systemctl.subs.hybrid-sleep]
-short = "hy"
-
-[cmds.systemctl.subs.import-environment]
-short = "ip"
-
-[cmds.systemctl.subs.is-active]
-short = "isa"
-
-[cmds.systemctl.subs.is-enabled]
-short = "ise"
-
-[cmds.systemctl.subs.is-failed]
-short = "isf"
-
-[cmds.systemctl.subs.is-system-running]
-short = "iss"
-
-[cmds.systemctl.subs.isolate]
-short = "io"
-
-[cmds.systemctl.subs.kexec]
-short = "ke"
-
-[cmds.systemctl.subs.kill]
-short = "kl"
-
-[cmds.systemctl.subs.link]
-short = "lik"
-
-[cmds.systemctl.subs.list-automounts]
-short = "lsa"
-
-[cmds.systemctl.subs.list-dependencies]
-short = "lsd"
-
-[cmds.systemctl.subs.list-jobs]
-short = "lsj"
-
-[cmds.systemctl.subs.list-machines]
-short = "lsm"
-
-[cmds.systemctl.subs.list-paths]
-short = "lsp"
-
-[cmds.systemctl.subs.list-sockets]
-short = "lss"
-
-[cmds.systemctl.subs.list-timers]
-short = "lst"
-
-[cmds.systemctl.subs.list-unit-files]
-short = "lsuf"
-
-[cmds.systemctl.subs.list-units]
-short = "lsu"
-
-[cmds.systemctl.subs.log-level]
-short = "lgl"
-
-[cmds.systemctl.subs.log-target]
-short = "lgt"
-
-[cmds.systemctl.subs.mask]
-short = "ms"
-
-[cmds.systemctl.subs.mount-image]
-short = "mo"
-
-[cmds.systemctl.subs.poweroff]
-short = "po"
-
-[cmds.systemctl.subs.preset]
-short = "pt"
-
-[cmds.systemctl.subs.preset-all]
-short = "pa"
-
-[cmds.systemctl.subs.reboot]
-short = "rb"
-
-[cmds.systemctl.subs.reenable]
-short = "re"
-
-[cmds.systemctl.subs.reload]
-short = "rd"
-
-[cmds.systemctl.subs.reload-or-restart]
-short = "r-"
-
-[cmds.systemctl.subs.rescue]
-short = "resc"
-
-[cmds.systemctl.subs.reset-failed]
-short = "rese"
-
-[cmds.systemctl.subs.restart]
-short = "rest"
-
-[cmds.systemctl.subs.revert]
-short = "rt"
-
-[cmds.systemctl.subs.service-log-level]
-short = "sl"
-
-[cmds.systemctl.subs.service-log-target]
-short = "st"
-
-[cmds.systemctl.subs.service-watchdogs]
-short = "sw"
-
-[cmds.systemctl.subs.set-default]
-short = "sed"
-
-[cmds.systemctl.subs.set-environment]
-short = "see"
-
-[cmds.systemctl.subs.set-property]
-short = "sep"
-
-[cmds.systemctl.subs.show]
-short = "shw"
-
-[cmds.systemctl.subs.show-environment]
-short = "se"
-
-[cmds.systemctl.subs.soft-reboot]
-short = "so"
-
-[cmds.systemctl.subs.start]
-short = "str"
-
-[cmds.systemctl.subs.status]
-short = "s"
-
-[cmds.systemctl.subs.stop]
-short = "sp"
-
-[cmds.systemctl.subs.suspend]
-short = "sd"
-
-[cmds.systemctl.subs.suspend-then-hibernate]
-short = "s-"
-
-[cmds.systemctl.subs.thaw]
-short = "th"
-
-[cmds.systemctl.subs.try-reload-or-restart]
-short = "tl"
-
-[cmds.systemctl.subs.try-restart]
-short = "ts"
-
-[cmds.systemctl.subs.unmask]
-short = "unm"
-
-[cmds.systemctl.subs.unset-environment]
-short = "uns"
-
-[cmds.systemctl.subs.whoami]
-short = "who"
 
