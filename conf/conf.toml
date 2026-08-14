@@ -1035,6 +1035,48 @@ short = "u"
 [cmds.docker.subs.wait]
 short = "w"
 
+[cmds.elan]
+short = "elan"
+
+[cmds.elan.flags.--help]
+short = "hp"
+
+[cmds.elan.flags.--verbose]
+short = "vb"
+
+[cmds.elan.flags.--version]
+short = "vs"
+
+[cmds.elan.subs.and]
+short = "a"
+
+[cmds.elan.subs.completions]
+short = "c"
+
+[cmds.elan.subs.default]
+short = "d"
+
+[cmds.elan.subs.help]
+short = "hp"
+
+[cmds.elan.subs.override]
+short = "o"
+
+[cmds.elan.subs.run]
+short = "r"
+
+[cmds.elan.subs.self]
+short = "se"
+
+[cmds.elan.subs.show]
+short = "sh"
+
+[cmds.elan.subs.toolchain]
+short = "t"
+
+[cmds.elan.subs.which]
+short = "w"
+
 [cmds.gh]
 short = "gh"
 
@@ -2288,6 +2330,243 @@ short = "u"
 [cmds.glab.subs.version]
 short = "vn"
 
+[cmds.lake]
+short = "lk"
+
+[cmds.lake.flags.--allow-empty]
+short = "al"
+
+[cmds.lake.flags.--ansi]
+short = "an"
+
+[cmds.lake.flags.--dir]
+short = "d"
+
+[cmds.lake.flags.--fail-level]
+short = "fa"
+
+[cmds.lake.flags.--file]
+short = "fi"
+
+[cmds.lake.flags.--help]
+short = "h"
+
+[cmds.lake.flags.--iofail]
+short = "io"
+
+[cmds.lake.flags.--json]
+short = "j"
+
+[cmds.lake.flags.--keep-toolchain]
+short = "k"
+
+[cmds.lake.flags.--log-level]
+short = "lo"
+
+[cmds.lake.flags.--no-build]
+short = "nb"
+
+[cmds.lake.flags.--no-cache]
+short = "nc"
+
+[cmds.lake.flags.--old]
+short = "o"
+
+[cmds.lake.flags.--packages]
+short = "pa"
+
+[cmds.lake.flags.--quiet]
+short = "qi"
+
+[cmds.lake.flags.--reconfigure]
+short = "rc"
+
+[cmds.lake.flags.--rehash]
+short = "rh"
+
+[cmds.lake.flags.--text]
+short = "tx"
+
+[cmds.lake.flags.--try-cache]
+short = "ty"
+
+[cmds.lake.flags.--update]
+short = "ue"
+
+[cmds.lake.flags.--verbose]
+short = "vb"
+
+[cmds.lake.flags.--version]
+short = "vs"
+
+[cmds.lake.flags.--wfail]
+short = "w"
+
+[cmds.lake.subs.build]
+short = "b"
+
+[cmds.lake.subs.cache]
+short = "ca"
+
+[cmds.lake.subs.check-build]
+short = "chb"
+
+[cmds.lake.subs.check-lint]
+short = "chl"
+
+[cmds.lake.subs.check-test]
+short = "cht"
+
+[cmds.lake.subs.clean]
+short = "cl"
+
+[cmds.lake.subs.env]
+short = "en"
+
+[cmds.lake.subs.exe]
+short = "ex"
+
+[cmds.lake.subs.init]
+short = "in"
+
+[cmds.lake.subs.lean]
+short = "le"
+
+[cmds.lake.subs.lint]
+short = "li"
+
+[cmds.lake.subs.new]
+short = "ne"
+
+[cmds.lake.subs.pack]
+short = "pk"
+
+[cmds.lake.subs.query]
+short = "qe"
+
+[cmds.lake.subs.run]
+short = "ru"
+
+[cmds.lake.subs.script]
+short = "st"
+
+[cmds.lake.subs.scripts]
+short = "ss"
+
+[cmds.lake.subs.serve]
+short = "se"
+
+[cmds.lake.subs.shake]
+short = "sh"
+
+[cmds.lake.subs.test]
+short = "ts"
+
+[cmds.lake.subs.translate-config]
+short = "ta"
+
+[cmds.lake.subs.unpack]
+short = "un"
+
+[cmds.lake.subs.update]
+short = "ue"
+
+[cmds.lake.subs.upload]
+short = "ul"
+
+[cmds.lean]
+short = "lean"
+
+[cmds.lean.flags.--deps]
+short = "d"
+
+[cmds.lean.flags.--error]
+short = "e"
+
+[cmds.lean.flags.--features]
+short = "f"
+
+[cmds.lean.flags.--githash]
+short = "g"
+
+[cmds.lean.flags.--help]
+short = "h"
+
+[cmds.lean.flags.--incr-header-save]
+short = "ih"
+
+[cmds.lean.flags.--incr-load]
+short = "il"
+
+[cmds.lean.flags.--incr-save]
+short = "is"
+
+[cmds.lean.flags.--json]
+short = "j"
+
+[cmds.lean.flags.--load-dynlib]
+short = "l"
+
+[cmds.lean.flags.--memory]
+short = "m"
+
+[cmds.lean.flags.--plugin]
+short = "pl"
+
+[cmds.lean.flags.--print-libdir]
+short = "prl"
+
+[cmds.lean.flags.--print-prefix]
+short = "prp"
+
+[cmds.lean.flags.--profile]
+short = "po"
+
+[cmds.lean.flags.--quiet]
+short = "q"
+
+[cmds.lean.flags.--root]
+short = "ro"
+
+[cmds.lean.flags.--run]
+short = "ru"
+
+[cmds.lean.flags.--server]
+short = "ser"
+
+[cmds.lean.flags.--setup]
+short = "set"
+
+[cmds.lean.flags.--short-version]
+short = "sh"
+
+[cmds.lean.flags.--src-deps]
+short = "sr"
+
+[cmds.lean.flags.--stats]
+short = "sa"
+
+[cmds.lean.flags.--stdin]
+short = "sd"
+
+[cmds.lean.flags.--threads]
+short = "th"
+
+[cmds.lean.flags.--timeout]
+short = "ti"
+
+[cmds.lean.flags.--trust]
+short = "tr"
+
+[cmds.lean.flags.--tstack]
+short = "ts"
+
+[cmds.lean.flags.--version]
+short = "v"
+
+[cmds.lean.flags.--worker]
+short = "w"
+
 [cmds.mdbook]
 short = "mdb"
 
@@ -2478,7 +2757,7 @@ short = "nl"
 short = "np"
 
 [cmds.nix.subs.path-info]
-short = "pi"
+short = "p-i"
 
 [cmds.nix.subs.print-dev-env]
 short = "pde"

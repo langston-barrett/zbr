@@ -75,7 +75,7 @@ exact_subs = [
 ]
 
 [subs.path-info]
-short = "pi"
+short = "p-i"
 
 [subs.print-dev-env]
 short = "pde"

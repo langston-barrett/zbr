@@ -1,0 +1,29 @@
+short = "lk"
+extract_subs = true
+extract_flags = true
+extra_subs = [
+  "new",
+  "init",
+  "build",
+  "query",
+  "exe",
+  "check-build",
+  "test",
+  "check-test",
+  "lint",
+  "check-lint",
+  "clean",
+  "shake",
+  "env",
+  "lean",
+  "update",
+  "pack",
+  "unpack",
+  "upload",
+  "cache",
+  "script",
+  "scripts",
+  "run",
+  "translate-config",
+  "serve",
+]
