@@ -653,6 +653,37 @@ Commands:
 
 Run 'docker COMMAND --help' for more information on a command."#;
 
+    const ELAN_HELP: &str = "
+elan 4.1.1
+The Lean toolchain installer
+
+USAGE:
+    elan [FLAGS] <SUBCOMMAND>
+
+FLAGS:
+    -v, --verbose    Enable verbose output
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+SUBCOMMANDS:
+    show           Show the active and installed toolchains
+    default        Set the default toolchain
+    toolchain      Modify or query the installed toolchains
+    override       Modify directory toolchain overrides
+    run            Run a command with an environment configured for a given toolchain
+    which          Display which binary will be run for a given command
+    self           Modify the elan installation
+    completions    Generate completion scripts for your shell
+    help           Prints this message or the help of the given subcommand(s)
+
+DISCUSSION:
+    elan manages your installations of the Lean theorem prover.
+    It places `lean` and `lake` binaries in your `PATH` that automatically
+    select and, if necessary, download the Lean version described in your
+    project's `lean-toolchain` file. You can also install, select, run,
+    and uninstall Lean versions manually using the commands of the `elan`
+    executable.";
+
     const GIT_HELP: &str = "
 usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
            [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
@@ -1346,6 +1377,72 @@ Options:
 
 See the systemctl(1) man page for details.";
 
+    const LAKE_HELP: &str = r#"
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
+
+USAGE:
+  lake [OPTIONS] <COMMAND>
+
+COMMANDS:
+  new <name> <temp>     create a Lean package in a new directory
+  init <name> <temp>    create a Lean package in the current directory
+  build <targets>...    build targets
+  query <targets>...    build targets and output results
+  exe <exe> <args>...   build an exe and run it in Lake's environment
+  check-build           check if any default build targets are configured
+  test                  test the package using the configured test driver
+  check-test            check if there is a properly configured test driver
+  lint                  lint the package
+  check-lint            check if there is a properly configured lint driver
+  clean                 remove build outputs
+  shake                 minimize imports in source files
+  env <cmd> <args>...   execute a command in Lake's environment
+  lean <file>           elaborate a Lean file in Lake's context
+  update                update dependencies and save them to the manifest
+  pack                  pack build artifacts into an archive for distribution
+  unpack                unpack build artifacts from an distributed archive
+  upload <tag>          upload build artifacts to a GitHub release
+  cache                 manage the Lake cache
+  script                manage and run workspace scripts
+  scripts               shorthand for `lake script list`
+  run <script>          shorthand for `lake script run`
+  translate-config      change language of the package configuration
+  serve                 start the Lean language server
+
+BASIC OPTIONS:
+  --version             print version and exit
+  --help, -h            print help of the program or a command and exit
+  --dir, -d=file        use the package configuration in a specific directory
+  --file, -f=file       use a specific file for the package configuration
+  -K key[=value]        set the configuration file option named key
+  --old                 only rebuild modified modules (ignore transitive deps)
+  --rehash, -H          hash all files for traces (do not trust `.hash` files)
+  --update              update dependencies on load (e.g., before a build)
+  --packages=file       JSON file of package entries that override the manifest
+  --reconfigure, -R     elaborate configuration files instead of using OLeans
+  --keep-toolchain      do not update toolchain on workspace update
+  --allow-empty         accept bare builds with no default targets configured
+  --no-build            exit immediately if a build target is not up-to-date
+  --no-cache            build packages locally; do not download build caches
+  --try-cache           attempt to download build caches for supported packages
+  --json, -J            output JSON-formatted results (in `lake query`)
+  --text                output results as plain text (in `lake query`)
+
+OUTPUT OPTIONS:
+  --quiet, -q           hide informational logs and the progress indicator
+  --verbose, -v         show trace logs (command invocations) and built targets
+  --ansi, --no-ansi     toggle the use of ANSI escape codes to prettify output
+  --log-level=lv        minimum log level to output on success
+                        (levels: trace, info, warning, error)
+  --fail-level=lv       minimum log level to fail a build (default: error)
+  --iofail              fail build if any I/O or other info is logged
+                        (same as --fail-level=info)
+  --wfail               fail build if warnings are logged
+                        (same as --fail-level=warning)
+
+
+See `lake help <command>` for more information on a specific command."#;
+
     #[allow(clippy::type_complexity)]
     fn go(conf: &ConfigFile, s: String) -> (Vec<(String, String)>, Vec<(String, String)>) {
         let (flags, subs) = extract_text(conf, s);
@@ -1611,6 +1708,35 @@ See the systemctl(1) man page for details.";
     }
 
     #[test]
+    fn extract_elan() {
+        let conf = ConfigFile {
+            extract_flags: true,
+            extract_subs: true,
+            ..ConfigFile::default()
+        };
+        let (flags, subs) = go(&conf, String::from(ELAN_HELP));
+        let expected = expect![[r#"
+            hp -> help
+            vb -> verbose
+            vs -> version
+        "#]];
+        expected.assert_eq(&serialize(&flags));
+        // TODO: 'and'...?
+        let expected = expect![[r#"
+            a -> and
+            c -> completions
+            d -> default
+            hp -> help
+            o -> override
+            r -> run
+            se -> self
+            sh -> show
+            t -> toolchain
+            w -> which
+        "#]];
+        expected.assert_eq(&serialize(&subs));
+    }
+    #[test]
     fn extract_git() {
         let conf = ConfigFile::from_file(PathBuf::from("conf/git.toml"));
         let (flags, subs) = go(&conf, String::from(GIT_HELP));
@@ -1855,6 +1981,45 @@ See the systemctl(1) man page for details.";
             u -> user
             va -> variable
         "#]];
+        expected.assert_eq(&serialize(&subs));
+    }
+
+    #[test]
+    fn extract_lake() {
+        let conf = ConfigFile {
+            extract_flags: true,
+            extract_subs: true,
+            ..ConfigFile::default()
+        };
+        let (flags, subs) = go(&conf, String::from(LAKE_HELP));
+        let expected = expect![[r#"
+            al -> allow-empty
+            an -> ansi
+            d -> dir
+            fa -> fail-level
+            fi -> file
+            h -> help
+            i -> iofail
+            j -> json
+            k -> keep-toolchain
+            l -> log-level
+            nb -> no-build
+            nc -> no-cache
+            o -> old
+            p -> packages
+            q -> quiet
+            rc -> reconfigure
+            rh -> rehash
+            te -> text
+            tr -> try-cache
+            u -> update
+            vb -> verbose
+            vs -> version
+            w -> wfail
+        "#]];
+        expected.assert_eq(&serialize(&flags));
+        // TODO: subcommands
+        let expected = expect![""];
         expected.assert_eq(&serialize(&subs));
     }
 
