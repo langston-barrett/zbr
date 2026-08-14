@@ -1,0 +1,145 @@
+short = "n"
+# https://nix.dev/manual/nix/2.34/command-ref/experimental-commands.html
+extra_subs = [
+  "build",
+  "bundle",
+  "config",
+  "config check",
+  "config show",
+  "copy",
+  "daemon",
+  "derivation",
+  "derivation add",
+  "derivation show",
+  "develop",
+  "edit",
+  "env",
+  "env shell",
+  "eval",
+  "flake",
+  "fmt",
+  "formatter",
+  "formatter build",
+  "formatter run",
+  "hash",
+  "hash convert",
+  "hash file",
+  "hash path",
+  "hash to-base16",
+  "hash to-base32",
+  "hash to-base64",
+  "hash to-sri",
+  "help",
+  "help-stores",
+  "key",
+  "key convert-secret-to-public",
+  "key generate-secret",
+  "log",
+  "nar",
+  "nar cat",
+  "nar dump-path",
+  "nar ls",
+  "nar pack",
+  "path-info",
+  "print-dev-env",
+  "profile",
+  "realisation",
+  "realisation info",
+  "registry",
+  "repl",
+  "run",
+  "search",
+  "store",
+  "upgrade-nix",
+  "why-depends",
+]
+
+[subs.build]
+short = "b"
+
+[subs.flake]
+short = "fk"
+exact_subs = [
+  "archive",
+  "check",
+  "clone",
+  "info",
+  "init",
+  "lock",
+  "metadata",
+  "new",
+  "prefetch",
+  "prefetch-inputs",
+  "show",
+  "update",
+]
+
+[subs.path-info]
+short = "pi"
+
+[subs.print-dev-env]
+short = "pde"
+
+[subs.profile]
+short = "p"
+exact_subs = [
+  "add",
+  "diff-closures",
+  "history",
+  "install",
+  "list",
+  "remove",
+  "rollback",
+  "upgrade",
+  "wipe-history",
+]
+
+[subs.profile.subs.install]
+short = "i"
+
+[subs.profile.subs.remove]
+short = "rm"
+
+[subs.profile.subs.registry]
+short = "rg"
+exact_subs = [
+  "add",
+  "list",
+  "pin",
+  "remove",
+  "resolve",
+]
+
+[subs.registry.subs.remove]
+short = "rm"
+
+[subs.run]
+short = "r"
+
+[subs.profile.subs.search]
+short = "sh"
+
+[subs.profile.subs.store]
+short = "st"
+exact_subs = [
+  "add",
+  "add-file",
+  "add-path",
+  "cat",
+  "copy-log",
+  "copy-sigs",
+  "delete",
+  "diff-closures",
+  "dump-path",
+  "gc",
+  "info",
+  "ls",
+  "make-content-addressed",
+  "optimise",
+  "path-from-hash-part",
+  "prefetch-file",
+  "repair",
+  "roots-daemon",
+  "sign",
+  "verify",
+]

@@ -155,7 +155,7 @@ fn add_prefixes(
     let strings = strings.into_iter().collect::<Vec<_>>();
     let denylist = HashSet::from_iter(compiled.keys().map(String::as_str));
     let pfxs = unique_prefixes(strings.as_slice(), &denylist);
-    for (s, pfx) in BTreeMap::from_iter(pfxs.into_iter()).into_iter() {
+    for (s, pfx) in BTreeMap::from_iter(pfxs).into_iter() {
         debug_assert!(pfx.len() <= s.len());
         if s == pfx {
             continue;
